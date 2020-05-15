@@ -10,6 +10,7 @@ Kekoa käyttämällä Dijkstran algoritmilla pyritään kokonaisaikavaativuuteen
 
 
 
+
 Lähteet:
 
 Wikipedia (2020a) _Dijkstran algoritmi_. <https://fi.wikipedia.org/wiki/Dijkstran_algoritmi>, haettu 15.5.2020.
