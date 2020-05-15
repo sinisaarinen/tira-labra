@@ -11,6 +11,9 @@ Kekoa käyttämällä Dijkstran algoritmilla pyritään kokonaisaikavaativuuteen
 
 
 Lähteet:
+
 Wikipedia (2020a) _Dijkstran algoritmi_. <https://fi.wikipedia.org/wiki/Dijkstran_algoritmi>, haettu 15.5.2020.
+
 Wikipedia (2020b) _A*-algoritmi_. <https://fi.wikipedia.org/wiki/A*-algoritmi>, haettu 15.5.2020.
+
 Wikipedia (2020c) _A* search algorithm_. <https://en.wikipedia.org/wiki/A*_search_algorithm>, haettu 15.5.2020.
