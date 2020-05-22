@@ -6,7 +6,7 @@ Harjoitustyössäni aion vertailla A*-algoritmia ja Dijkstran algoritmia, jotka 
 
 Syötteenä ohjelma saa kartan sekä alku- ja loppusolmun eli ne kaupungit, joiden välinen reitti halutaan optimoida. Luultavasti tämä tullaan toteuttamaan siten, että käyttöliittymä tarjoaa mahdollisuuden valita lähtö- ja päätepisteen listalla olevista kaupungeista. Syötteenä käytän karttojen asemasta [2D-ruudukkoja](https://movingai.com/benchmarks/street/index.html), jotka ohjelma muuttaa matriiseiksi.
 
-Kekoa käyttämällä Dijkstran algoritmilla pyritään kokonaisaikavaativuuteen O((|E|+|V|) log(|V|)). A*-algoritmin aikavaativuus on sama kuin Dijkstran algoritmilla. Tilavaativuus Dijkstran algoritmilla ja A*-algoritmilla on O(|V|).
+Kekoa käyttämällä Dijkstran algoritmilla pyritään kokonaisaikavaativuuteen O((|E|+|V|) log(|V|)), jossa V on solmujen lukumäärä ja E kaarien lukumäärä. A*-algoritmin aikavaativuus on sama kuin Dijkstran algoritmilla. Tilavaativuus Dijkstran algoritmilla ja A*-algoritmilla on O(|V|).
 
 
 
