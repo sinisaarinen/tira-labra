@@ -1,6 +1,9 @@
-#Fri May 22 12:57:25 EEST 2020
+#Fri May 22 13:04:11 EEST 2020
 configuration*?=C82E0AF5722CC84EBB51FF9515395B64399A7156
 /home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Keko.java=1590127924514
 /home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/Dijkstra.java=1590138674425
+/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/kartat/Kartanlukija.java=1590141846465
+/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/ui/Kayttoliittyma.java=1590141768901
 /home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/AStar.java=1590049313985
+/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Solmu.java=1590141748096
 /home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/main/Main.java=1590049334581
