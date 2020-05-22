@@ -40,7 +40,7 @@ JavaDocia voi tarkastella avaamalla selaimella tiedoston _target/site/apidocs/in
 
 ### Checkstyle
 
-Tiedoston [checkstyle.xml](Reitinhaku/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+Tiedoston [checkstyle.xml](Reitinhaku/Reitinhaku/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
 ```
 mvn jxr:jxr checkstyle:checkstyle
 ```
