@@ -9,6 +9,41 @@ package tiralabra.reitinhaku.tietorakenteet;
  *
  * @author saasini
  */
-public class Solmu {
+public class Solmu implements Comparable<Solmu> {
     
+    private final int x;
+    private final int y;
+    Solmu vanhempi;
+    
+    public Solmu (int y, int x) {
+         this.x = x;
+         this.y = y;
+    }
+    
+    public Solmu (int y, int x, Solmu vanhempi) {
+         this.x = x;
+         this.y = y;
+         this.vanhempi = vanhempi;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Solmu getVanhempi() {
+        return vanhempi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Solmu vertailtava = (Solmu) o;
+        if(x == vertailtava.getX() && y == vertailtava.getY()) {
+            return true;
+        }
+        return false;
+    }
 }
