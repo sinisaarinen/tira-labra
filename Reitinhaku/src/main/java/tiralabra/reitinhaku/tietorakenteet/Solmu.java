@@ -11,18 +11,21 @@ package tiralabra.reitinhaku.tietorakenteet;
  */
 public class Solmu {
     
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
+    private int etaisyys;
     Solmu vanhempi;
     
     public Solmu (int y, int x) {
          this.x = x;
          this.y = y;
+         this.etaisyys = -1;
     }
     
-    public Solmu (int y, int x, Solmu vanhempi) {
+    public Solmu (int y, int x, int etaisyys, Solmu vanhempi) {
          this.x = x;
          this.y = y;
+         this.etaisyys = etaisyys;
          this.vanhempi = vanhempi;
     }
 
@@ -32,6 +35,10 @@ public class Solmu {
 
     public int getY() {
         return y;
+    }
+    
+    public int getEtaisyys() {
+        return etaisyys;
     }
 
     public Solmu getVanhempi() {
