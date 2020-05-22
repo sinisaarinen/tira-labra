@@ -7,7 +7,7 @@ Määrittelydokumenttiin tuli myös pieniä muutoksia, sillä päätin käyttä�
 En aloittanut tällä viikolla vielä Dijkstran tai A*-algoritmin koodaamista. Sen sijaan tein Kartanlukija-luokan, joka lukee .map-tyyppisiä tiedostoja ja muuttaa ne matriiseksi (2-paikkaisiksi taulukoiksi), joita algoritmien on helpompi käsitellä Java-ympäristössä.
 Lisäksi tein testit Kartanlukija-luokalle. Koodasin myös alustavan Solmu-luokan, joka on yksi käytettävistä tietorakenteista. Myös Solmu-luokalle tehtiin testit.
 
-Otin myös projektissa käyttöön tällä viikolla Checkstylen, JavaDocsin ja Jacoco-testikattavuusraportoinnin. Nostin testikattavuuden korkeammaksi ensimmäisen raportin luomisen jälkeen tekemällä lisää testejä. Lisäksi korjasin kaikki Checkstyle-virheet.
+Otin myös projektissa käyttöön tällä viikolla Checkstylen, JavaDocsin ja Jacoco-testikattavuusraportoinnin. Nostin testikattavuuden korkeammaksi ensimmäisen raportin luomisen jälkeen tekemällä lisää testejä. Lisäsin myös JavaDocs-kommentointia tähän mennessä luotuun koodiin, poislukien testit sekä jotkin yksinkertaiset metodit kuten getterit. Lisäksi korjasin kaikki Checkstyle-virheet.
 
 Seuraavalla viikolla aloitan algoritmien ja puuttuvien tietorakenteiden koodauksen ja ohjelman rakenteiden yhdistämisen.
 
