@@ -11,24 +11,38 @@ import java.util.Scanner;
 
 /**
  *
- * @author saasini
+ * Luokka vastaa .map-tyyppisten karttatiedostojen lukemisesta ja niiden
+ * muuntamisesta matriisimuotoon.
  */
 public class Kartanlukija {
+    
     private File kartta;
     private Scanner lukija;
     
+     /**
+     * Konstruktori saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
+     * @param tiedosto
+     * @throws FileNotFoundException 
+     */
     public Kartanlukija(File tiedosto) throws FileNotFoundException {
         this.kartta = tiedosto;        
         if (!lueKartta()) {
             throw new FileNotFoundException();
         }        
     }
-    
+    /**
+     * Metodi saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
+     * @param tiedosto
+     * @return true jos lueKartta-metodi palauttaa true, muuten false
+     */
     public boolean lataaKartta(File tiedosto) {
         kartta = tiedosto;
         return lueKartta();
     }
-    
+    /**
+     * Metodi lukee .map-tiedoston.
+     * @return true jos tiedosto löytyy, muuten false
+     */
     public boolean lueKartta() {
         try {            
             lukija = new Scanner(kartta);
@@ -37,7 +51,11 @@ public class Kartanlukija {
             return false;
         }
     }
-    
+     /**
+     * Metodi luo matriisin .map-muotoisesta tiedostosta.
+     * @return matriisi, jos tiedoston luku onnistuu.
+     * @throws Exception 
+     */
     public char[][] luoMatriisi() throws Exception {
         String korkeus;
         String leveys;
@@ -54,7 +72,11 @@ public class Kartanlukija {
             throw new Exception("Valittu tiedosto ei kelpaa.");            
         }        
     }
-    
+     /**
+     * Metodi kutsuu luoMatriisi-metodia ja palauttaa luodun matriisin.
+     * @return luotu matriisi
+     * @throws Exception 
+     */
     public char[][] muutaMatriisiksi() throws Exception {
         char[][] matriisi = luoMatriisi();
         for (int i = 0; i < matriisi.length; i++) {

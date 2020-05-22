@@ -6,8 +6,8 @@
 package tiralabra.reitinhaku.tietorakenteet;
 
 /**
- *
- * @author saasini
+ * 
+ * Luokka vastaa yksittäisistä solmuista ja niiden toiminnoista
  */
 public class Solmu {
     
@@ -44,7 +44,11 @@ public class Solmu {
     public Solmu getVanhempi() {
         return vanhempi;
     }
-
+    /**
+     * Metodi vertailee kahta solmua.
+     * @param o vertailtava solmu
+     * @return true jos solmut ovat samat, muuten false
+     */
     @Override
     public boolean equals(Object o) {
         Solmu vertailtava = (Solmu) o;
