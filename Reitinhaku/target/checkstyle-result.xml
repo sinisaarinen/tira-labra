@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.11.2">
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/main/Main.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/main/Main.java">
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/Dijkstra.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/Dijkstra.java">
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/AStar.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/AStar.java">
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/ui/Käyttöliittymä.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/ui/Käyttöliittymä.java">
 <error line="12" column="14" severity="error" message="Name &apos;Käyttöliittymä&apos; must match pattern &apos;^[A-Z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"/>
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Solmu.java">
-<error line="18" column="18" severity="error" message="&apos;(&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"/>
-<error line="19" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Solmu.java">
+<error line="19" column="18" severity="error" message="&apos;(&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"/>
 <error line="20" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
-<error line="23" column="18" severity="error" message="&apos;(&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"/>
-<error line="24" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
-<error line="25" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="21" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="22" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="25" column="18" severity="error" message="&apos;(&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"/>
 <error line="26" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
-<error line="44" column="11" severity="error" message="&apos;if&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="56" column="13" severity="error" message="Name &apos;tämäSolmu&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
-<error line="58" column="11" severity="error" message="&apos;if&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="60" column="9" severity="error" message="&apos;}&apos; at column 9 should be on the same line as the next part of a multi-block statement." source="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"/>
-<error line="61" column="16" severity="error" message="&apos;if&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="63" column="9" severity="error" message="&apos;}&apos; at column 9 should be on the same line as the next part of a multi-block statement." source="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"/>
-<error line="64" severity="error" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
-<error line="65" severity="error" message="&apos;else&apos; child have incorrect indentation level 8, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="27" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="28" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="29" severity="error" message="&apos;ctor def&apos; child have incorrect indentation level 9, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="51" column="11" severity="error" message="&apos;if&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Keko.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Keko.java">
 </file>
-<file name="/home/saasini/tira-labra/Reitinhaku/Reitinhaku/src/main/java/tiralabra/reitinhaku/kartat/Kartanlukija.java">
+<file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/kartat/Kartanlukija.java">
 <error line="53" column="37" severity="error" message="&apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 </file>
 </checkstyle>

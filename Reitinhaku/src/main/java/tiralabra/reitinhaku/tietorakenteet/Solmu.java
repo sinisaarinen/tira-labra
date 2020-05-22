@@ -16,17 +16,17 @@ public class Solmu {
     private int etaisyys;
     Solmu vanhempi;
     
-    public Solmu (int y, int x) {
-         this.x = x;
-         this.y = y;
-         this.etaisyys = -1;
+    public Solmu(int y, int x) {
+        this.x = x;
+        this.y = y;
+        this.etaisyys = -1;
     }
     
-    public Solmu (int y, int x, int etaisyys, Solmu vanhempi) {
-         this.x = x;
-         this.y = y;
-         this.etaisyys = etaisyys;
-         this.vanhempi = vanhempi;
+    public Solmu(int y, int x, int etaisyys, Solmu vanhempi) {
+        this.x = x;
+        this.y = y;
+        this.etaisyys = etaisyys;
+        this.vanhempi = vanhempi;
     }
 
     public int getX() {
@@ -48,7 +48,7 @@ public class Solmu {
     @Override
     public boolean equals(Object o) {
         Solmu vertailtava = (Solmu) o;
-        if(x == vertailtava.getX() && y == vertailtava.getY()) {
+        if (x == vertailtava.getX() && y == vertailtava.getY()) {
             return true;
         }
         return false;

@@ -9,6 +9,6 @@ package tiralabra.reitinhaku.ui;
  *
  * @author saasini
  */
-public class Käyttöliittymä {
+public class Kayttoliittyma {
     
 }

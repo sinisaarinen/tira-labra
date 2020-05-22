@@ -11,40 +11,47 @@ package tiralabra.reitinhaku.tietorakenteet;
  */
 public class Solmu {
     
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
+    private int etaisyys;
     Solmu vanhempi;
     
-<span class="nc" id="L18">    public Solmu (int y, int x) {</span>
-<span class="nc" id="L19">         this.x = x;</span>
-<span class="nc" id="L20">         this.y = y;</span>
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L19">    public Solmu (int y, int x) {</span>
+<span class="fc" id="L20">         this.x = x;</span>
+<span class="fc" id="L21">         this.y = y;</span>
+<span class="fc" id="L22">         this.etaisyys = -1;</span>
+<span class="fc" id="L23">    }</span>
     
-<span class="nc" id="L23">    public Solmu (int y, int x, Solmu vanhempi) {</span>
-<span class="nc" id="L24">         this.x = x;</span>
-<span class="nc" id="L25">         this.y = y;</span>
-<span class="nc" id="L26">         this.vanhempi = vanhempi;</span>
-<span class="nc" id="L27">    }</span>
+<span class="fc" id="L25">    public Solmu (int y, int x, int etaisyys, Solmu vanhempi) {</span>
+<span class="fc" id="L26">         this.x = x;</span>
+<span class="fc" id="L27">         this.y = y;</span>
+<span class="fc" id="L28">         this.etaisyys = etaisyys;</span>
+<span class="fc" id="L29">         this.vanhempi = vanhempi;</span>
+<span class="fc" id="L30">    }</span>
 
     public int getX() {
-<span class="nc" id="L30">        return x;</span>
+<span class="fc" id="L33">        return x;</span>
     }
 
     public int getY() {
-<span class="nc" id="L34">        return y;</span>
+<span class="fc" id="L37">        return y;</span>
+    }
+    
+    public int getEtaisyys() {
+<span class="fc" id="L41">        return etaisyys;</span>
     }
 
     public Solmu getVanhempi() {
-<span class="nc" id="L38">        return vanhempi;</span>
+<span class="fc" id="L45">        return vanhempi;</span>
     }
 
     @Override
     public boolean equals(Object o) {
-<span class="nc" id="L43">        Solmu vertailtava = (Solmu) o;</span>
-<span class="nc bnc" id="L44" title="All 4 branches missed.">        if(x == vertailtava.getX() &amp;&amp; y == vertailtava.getY()) {</span>
-<span class="nc" id="L45">            return true;</span>
+<span class="fc" id="L50">        Solmu vertailtava = (Solmu) o;</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">        if(x == vertailtava.getX() &amp;&amp; y == vertailtava.getY()) {</span>
+<span class="fc" id="L52">            return true;</span>
         }
-<span class="nc" id="L47">        return false;</span>
+<span class="fc" id="L54">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

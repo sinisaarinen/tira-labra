@@ -21,12 +21,14 @@ public class SolmuTest {
     private Solmu solmu1;
     private Solmu solmu2;
     private Solmu solmu3;
+    private Solmu solmu4;
 
     @Before
     public void setUp() {
         solmu1 = new Solmu(5, 5);
         solmu2 = new Solmu(5, 5);
         solmu3 = new Solmu(3, 3);
+        solmu4 = new Solmu(10, 10, 20, solmu1);
     }
 
     @Test
