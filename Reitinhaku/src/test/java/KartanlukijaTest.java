@@ -53,6 +53,17 @@ public class KartanlukijaTest {
     }
     
     @Test
+    public void luoMatriisiHeittaaPoikkeuksen() {
+        try {
+            kartanlukija = new Kartanlukija(tied2);
+            char[][] matriisi = kartanlukija.luoMatriisi();
+            assert false;
+        } catch (Exception poikkeus) {
+            assert true;
+        }
+    }
+    
+    @Test
     public void muutaMatriisiksiHeittaaPoikkeuksen() {
         try {
             kartanlukija = new Kartanlukija(tied2);
