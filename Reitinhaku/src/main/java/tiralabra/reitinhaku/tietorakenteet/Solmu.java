@@ -9,24 +9,28 @@ package tiralabra.reitinhaku.tietorakenteet;
  * 
  * Luokka vastaa yksittäisistä solmuista ja niiden toiminnoista
  */
-public class Solmu {
+public class Solmu implements Comparable<Solmu> {
     
     private int x;
     private int y;
-    private int etaisyys;
+    private int lyhinEtaisyysAlusta; //A*-algoritmille
+    private int etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
+    private int sijainti; //Minimikeon käyttöön
     
     public Solmu(int y, int x) {
         this.x = x;
         this.y = y;
-        this.etaisyys = -1;
+        this.lyhinEtaisyysAlusta = -1;
+        this.sijainti = -1;
     }
     
     public Solmu(int y, int x, int etaisyys, Solmu vanhempi) {
         this.x = x;
         this.y = y;
-        this.etaisyys = etaisyys;
+        this.lyhinEtaisyysAlusta = etaisyys;
         this.vanhempi = vanhempi;
+        this.sijainti = -1;
     }
 
     public int getX() {
@@ -37,12 +41,24 @@ public class Solmu {
         return y;
     }
     
-    public int getEtaisyys() {
-        return etaisyys;
+    public int getLyhinEtaisyysAlusta() {
+        return lyhinEtaisyysAlusta;
+    }
+    
+    public int getEtaisyysArvioLoppuun() {
+        return etaisyysArvioLoppuun;
     }
 
     public Solmu getVanhempi() {
         return vanhempi;
+    }
+    
+    public void setSijainti(int sijainti) {
+        this.sijainti = sijainti;
+    }
+    
+    public int getSijainti() {
+        return this.sijainti;
     }
     /**
      * Metodi vertailee kahta solmua.
@@ -56,5 +72,28 @@ public class Solmu {
             return true;
         }
         return false;
+    }
+     /**
+     * Metodi vertailee kahta solmua niiden etäisyyksien perusteella.
+     * @param s vertailtava solmu
+     * @return -1 jos vertailtavan solmun etäisyys on suurempi, 1 jos vertailtavan
+     * solmun etäisyys on pienempi ja 0 jos vertailtavaa solmua ei olemassa tai
+     * solmujen etäisyydet ovat yhtä suuret.
+     */
+    @Override
+    public int compareTo(Solmu s) {
+        if (s == null) {
+            return 0;
+        }
+        double etaisyys = this.lyhinEtaisyysAlusta + this.etaisyysArvioLoppuun;
+        double vertailtavanEtaisyys = s.getLyhinEtaisyysAlusta() + s.getEtaisyysArvioLoppuun();
+
+        if (etaisyys < vertailtavanEtaisyys) {
+            return -1;
+        } 
+        if (etaisyys == vertailtavanEtaisyys) {
+            return 0;            
+        }
+        return 1;        
     }
 }
