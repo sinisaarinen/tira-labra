@@ -34,8 +34,23 @@ public class Keko {
         painaAlas(0);
         return arvo;
     }
-     /**
-     * Metodi vertailee kahden solmun paikat.
+    /**
+     * Metodi lisää solmun minimikekoon ja kutsuu muita metodeja kekoehdon
+     * säilyttämiseksi.
+     * @param solmu lisättävä solmu
+     */
+    public void lisaaSolmu(Solmu solmu) {
+        koko++;
+        int i = koko;
+        while(i > 0 && solmut[etsiVanhempi(i)] == null || i > 0 && solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {
+            vaihdaSolmut(i, etsiVanhempi(i));
+            i = etsiVanhempi(i);
+        }
+        solmut[i] = solmu;
+        solmu.setSijainti(i);
+    }
+    /**
+     * Metodi vaihtaa kahden solmun paikat.
      * @param sijainti1 ensimmäisen solmun sijainti keossa
      * @param sijainti2 toisen solmun sijainti keossa
      */
@@ -51,8 +66,8 @@ public class Keko {
         }
     }
     /**
-     * Metodi, joka huolehtii siitä, että minimikeon kekovaatimus toteutuu. Metodi
-     * kutsuu vaihdaSolmut-metodia ja itseään rekursiivisesti, kunnes kekovaatimus
+     * Metodi, joka huolehtii siitä, että minimikeon kekoehto toteutuu. Metodi
+     * kutsuu vaihdaSolmut-metodia ja itseään rekursiivisesti, kunnes kekoehto
      * täyttyy.
      * 
      * @param sijainti solmun sijainti keossa
@@ -77,7 +92,7 @@ public class Keko {
             vaihdaSolmut(sijainti, vasen);
         }
     }
-     /**
+    /**
      * Metodi laskee solmun vasemman lapsen sijainnin ja palauttaa sen.
      * 
      * @param sijainti solmun sijainti keossa
@@ -86,7 +101,7 @@ public class Keko {
     public int etsiVasenLapsi(int sijainti) {
         return 2 * sijainti;
     }
-     /**
+    /**
      * Metodi laskee solmun oikean lapsen sijainnin ja palauttaa sen.
      * 
      * @param sijainti solmun sijainti keossa
@@ -94,5 +109,15 @@ public class Keko {
      */
     public int etsiOikeaLapsi(int sijainti) {
         return 2 * sijainti + 1;
+    }
+    /**
+     * Metodi laskee solmun vanhemman sijainnin ja palauttaa sen.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return vanhemman sijainti
+     */
+    public int etsiVanhempi (int sijainti) {
+        int vanhempi = (int) Math.floor(sijainti / 2);
+        return vanhempi;
     }
 }
