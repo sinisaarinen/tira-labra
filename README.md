@@ -12,6 +12,8 @@ Tämä sovellus tullaan toteuttamaan osana Helsingin yliopiston alkukesän 2020 
 
 [Viikko 2](dokumentaatio/viikkoraportit/viikko2.md)
 
+[Viikko 3](dokumentaatio/viikkoraportit/viikko3.md)
+
 ## Komentorivitoiminnot
 
 ### Testaus
