@@ -41,7 +41,7 @@ public class SolmuTest {
     public void getteritToimivatOikein() {
         assertEquals(5, solmu1.getX());
         assertEquals(5, solmu1.getY());
-        assertEquals(-1, solmu2.getEtaisyys());
+        assertEquals(-1, solmu2.getLyhinEtaisyysAlusta());
         assertEquals(null, solmu2.getVanhempi());
     }
 }

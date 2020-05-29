@@ -29,7 +29,7 @@ public class Keko {
      */
     public Solmu poistaPienin() {
         Solmu arvo = solmut[0];
-        vaihdaSolmut(0, koko);
+        vaihdaSolmut(0, this.koko);
         this.koko--;
         painaAlas(0);
         return arvo;
@@ -76,21 +76,34 @@ public class Keko {
         int vasen = etsiVasenLapsi(sijainti);
         int oikea = etsiOikeaLapsi(sijainti);
         int pienin;
-        int apu;
-        
-        if (oikea <= koko) { //solmulla on molemmat lapset
-            if (solmut[vasen].compareTo(solmut[oikea]) == -1 || solmut[oikea] == null) { //valitaan pienempi lapsista
-                pienin = vasen;
-            } else {
-                pienin = oikea;
+        if (!onLehti(sijainti)) {
+            if (oikea <= this.koko) { //solmulla on molemmat lapset
+                if (solmut[vasen].compareTo(solmut[oikea]) == -1 || solmut[oikea] == null) { //valitaan pienempi lapsista
+                    pienin = vasen;
+                } else {
+                    pienin = oikea;
+                }
+                if (solmut[sijainti].compareTo(solmut[pienin]) == 1) {
+                    vaihdaSolmut(sijainti, pienin);
+                    painaAlas(pienin);
+                }
+            } else if (solmut[vasen] != null && vasen == this.koko && solmut[sijainti].compareTo(solmut[vasen]) == 1) {
+                System.out.println("toimii");
+                vaihdaSolmut(sijainti, vasen);
             }
-            if (solmut[sijainti].compareTo(solmut[pienin]) == 1) {
-                vaihdaSolmut(sijainti, pienin);
-                painaAlas(pienin);
-            }
-        } else if (solmut[vasen] != null && vasen == koko && solmut[sijainti].compareTo(solmut[vasen]) == 1) {
-            vaihdaSolmut(sijainti, vasen);
         }
+    }
+     /**
+     * Metodi, joka tarkistaa, onko annetussa sijainnissa oleva solmu lehti.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return true jos solmu on lehti, muuten false
+     */
+    public boolean onLehti(int sijainti) { 
+        if (sijainti >= (this.koko / 2) && sijainti <= koko) { 
+            return true; 
+        } 
+        return false; 
     }
     /**
      * Metodi laskee solmun vasemman lapsen sijainnin ja palauttaa sen.
@@ -119,5 +132,9 @@ public class Keko {
     public int etsiVanhempi (int sijainti) {
         int vanhempi = (int) Math.floor(sijainti / 2);
         return vanhempi;
+    }
+    
+    public int getKeonKoko() {
+        return solmut.length;
     }
 }

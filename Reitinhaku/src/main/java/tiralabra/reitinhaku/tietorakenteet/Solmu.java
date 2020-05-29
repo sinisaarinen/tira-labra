@@ -16,21 +16,21 @@ public class Solmu implements Comparable<Solmu> {
     private int lyhinEtaisyysAlusta; //A*-algoritmille
     private int etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
-    private int sijainti; //Minimikeon käyttöön
+    private int sijaintiKeossa; //Minimikeon käyttöön
     
     public Solmu(int y, int x) {
         this.x = x;
         this.y = y;
         this.lyhinEtaisyysAlusta = -1;
-        this.sijainti = -1;
+        this.sijaintiKeossa = -1;
     }
     
-    public Solmu(int y, int x, int etaisyys, Solmu vanhempi) {
+    public Solmu(int y, int x, int lyhinEtaisyysAlusta, Solmu vanhempi) {
         this.x = x;
         this.y = y;
-        this.lyhinEtaisyysAlusta = etaisyys;
+        this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;
         this.vanhempi = vanhempi;
-        this.sijainti = -1;
+        this.sijaintiKeossa = -1;
     }
 
     public int getX() {
@@ -48,17 +48,25 @@ public class Solmu implements Comparable<Solmu> {
     public int getEtaisyysArvioLoppuun() {
         return etaisyysArvioLoppuun;
     }
+    
+    public void setLyhinEtaisyysAlusta(int etaisyys) {
+        this.lyhinEtaisyysAlusta = etaisyys;
+    }
+    
+    public void setEtaisyysArvioLoppuun(int etaisyys) {
+        this.etaisyysArvioLoppuun = etaisyys;
+    }
 
     public Solmu getVanhempi() {
         return vanhempi;
     }
     
     public void setSijainti(int sijainti) {
-        this.sijainti = sijainti;
+        this.sijaintiKeossa = sijainti;
     }
     
     public int getSijainti() {
-        return this.sijainti;
+        return this.sijaintiKeossa;
     }
     /**
      * Metodi vertailee kahta solmua.
