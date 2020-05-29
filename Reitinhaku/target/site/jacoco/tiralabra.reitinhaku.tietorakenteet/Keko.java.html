@@ -7,9 +7,135 @@ package tiralabra.reitinhaku.tietorakenteet;
 
 /**
  *
- * @author saasini
+ * Luokka vastaa minimikeko-tietorakenteesta. Keko on tallennettu taulukkona.
  */
-<span class="nc" id="L12">public class Keko {</span>
+public class Keko {
     
+    private int koko;
+    private Solmu[] solmut;
+    
+<span class="fc" id="L17">    public Keko(int koko) {</span>
+<span class="fc" id="L18">        this.koko = -1;</span>
+<span class="fc" id="L19">        this.solmut = new Solmu[koko];</span>
+<span class="fc" id="L20">    }</span>
+    
+    public Solmu getPienin() {
+<span class="nc" id="L23">        return solmut[0];</span>
+    }
+    /**
+     * Metodi poistaa keon pienimmän solmun ja palauttaa sen. Metodi myös kutsuu
+     * painaAlas-metodia, jotta keko pysyy järjestyksessä.
+     * @return keon pienin solmu
+     */
+    public Solmu poistaPienin() {
+<span class="fc" id="L31">        Solmu arvo = solmut[0];</span>
+<span class="fc" id="L32">        vaihdaSolmut(0, this.koko);</span>
+<span class="fc" id="L33">        this.koko--;</span>
+<span class="fc" id="L34">        painaAlas(0);</span>
+<span class="fc" id="L35">        return arvo;</span>
+    }
+    /**
+     * Metodi lisää solmun minimikekoon ja kutsuu muita metodeja kekoehdon
+     * säilyttämiseksi.
+     * @param solmu lisättävä solmu
+     */
+    public void lisaaSolmu(Solmu solmu) {
+<span class="fc" id="L43">        koko++;</span>
+<span class="fc" id="L44">        int i = koko;</span>
+<span class="pc bpc" id="L45" title="2 of 8 branches missed.">        while(i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)] == null || i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {</span>
+<span class="nc" id="L46">            vaihdaSolmut(i, etsiVanhempi(i));</span>
+<span class="nc" id="L47">            i = etsiVanhempi(i);</span>
+        }
+<span class="fc" id="L49">        solmut[i] = solmu;</span>
+<span class="fc" id="L50">        solmu.setSijainti(i);</span>
+<span class="fc" id="L51">    }</span>
+    /**
+     * Metodi vaihtaa kahden solmun paikat.
+     * @param sijainti1 ensimmäisen solmun sijainti keossa
+     * @param sijainti2 toisen solmun sijainti keossa
+     */
+    public void vaihdaSolmut(int sijainti1, int sijainti2) {
+<span class="fc" id="L58">        Solmu apu = solmut[sijainti1];</span>
+<span class="fc" id="L59">        solmut[sijainti1] = solmut[sijainti2];</span>
+<span class="fc" id="L60">        solmut[sijainti2] = apu;</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">        if (solmut[sijainti1] != null) {</span>
+<span class="fc" id="L62">            solmut[sijainti1].setSijainti(sijainti1);</span>
+        }
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (solmut[sijainti2] != null) {</span>
+<span class="fc" id="L65">            solmut[sijainti2].setSijainti(sijainti2);</span>
+        }
+<span class="fc" id="L67">    }</span>
+    /**
+     * Metodi, joka huolehtii siitä, että minimikeon kekoehto toteutuu. Metodi
+     * kutsuu vaihdaSolmut-metodia ja itseään rekursiivisesti, kunnes kekoehto
+     * täyttyy.
+     * 
+     * @param sijainti solmun sijainti keossa
+     */
+    public void painaAlas(int sijainti) {
+<span class="fc" id="L76">        int vasen = etsiVasenLapsi(sijainti);</span>
+<span class="fc" id="L77">        int oikea = etsiOikeaLapsi(sijainti);</span>
+        int pienin;
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (!onLehti(sijainti)) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (oikea &lt;= this.koko) { //solmulla on molemmat lapset</span>
+<span class="pc bpc" id="L81" title="1 of 4 branches missed.">                if (solmut[vasen].compareTo(solmut[oikea]) == -1 || solmut[oikea] == null) { //valitaan pienempi lapsista</span>
+<span class="fc" id="L82">                    pienin = vasen;</span>
+                } else {
+<span class="fc" id="L84">                    pienin = oikea;</span>
+                }
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                if (solmut[sijainti].compareTo(solmut[pienin]) == 1) {</span>
+<span class="fc" id="L87">                    vaihdaSolmut(sijainti, pienin);</span>
+<span class="fc" id="L88">                    painaAlas(pienin);</span>
+                }
+<span class="pc bpc" id="L90" title="4 of 6 branches missed.">            } else if (solmut[vasen] != null &amp;&amp; vasen == this.koko &amp;&amp; solmut[sijainti].compareTo(solmut[vasen]) == 1) {</span>
+<span class="nc" id="L91">                System.out.println(&quot;toimii&quot;);</span>
+<span class="nc" id="L92">                vaihdaSolmut(sijainti, vasen);</span>
+            }
+        }
+<span class="fc" id="L95">    }</span>
+     /**
+     * Metodi, joka tarkistaa, onko annetussa sijainnissa oleva solmu lehti.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return true jos solmu on lehti, muuten false
+     */
+    public boolean onLehti(int sijainti) { 
+<span class="fc bfc" id="L103" title="All 4 branches covered.">        if (sijainti &gt;= (this.koko / 2) &amp;&amp; sijainti &lt;= koko) { </span>
+<span class="fc" id="L104">            return true; </span>
+        } 
+<span class="fc" id="L106">        return false; </span>
+    }
+    /**
+     * Metodi laskee solmun vasemman lapsen sijainnin ja palauttaa sen.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return vasemman lapsen sijainti
+     */
+    public int etsiVasenLapsi(int sijainti) {
+<span class="fc" id="L115">        return 2 * sijainti;</span>
+    }
+    /**
+     * Metodi laskee solmun oikean lapsen sijainnin ja palauttaa sen.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return oikean lapsen sijainti
+     */
+    public int etsiOikeaLapsi(int sijainti) {
+<span class="fc" id="L124">        return 2 * sijainti + 1;</span>
+    }
+    /**
+     * Metodi laskee solmun vanhemman sijainnin ja palauttaa sen.
+     * 
+     * @param sijainti solmun sijainti keossa
+     * @return vanhemman sijainti
+     */
+    public int etsiVanhempi (int sijainti) {
+<span class="fc" id="L133">        int vanhempi = (int) Math.floor(sijainti / 2);</span>
+<span class="fc" id="L134">        return vanhempi;</span>
+    }
+    
+    public int getKeonKoko() {
+<span class="fc" id="L138">        return solmut.length;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

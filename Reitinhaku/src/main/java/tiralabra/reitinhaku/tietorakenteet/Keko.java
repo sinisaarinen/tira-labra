@@ -88,7 +88,6 @@ public class Keko {
                     painaAlas(pienin);
                 }
             } else if (solmut[vasen] != null && vasen == this.koko && solmut[sijainti].compareTo(solmut[vasen]) == 1) {
-                System.out.println("toimii");
                 vaihdaSolmut(sijainti, vasen);
             }
         }
