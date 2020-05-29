@@ -84,7 +84,7 @@ public class Keko {
      * @return vasemman lapsen sijainti
      */
     public int etsiVasenLapsi(int sijainti) {
-        return 2*sijainti;
+        return 2 * sijainti;
     }
      /**
      * Metodi laskee solmun oikean lapsen sijainnin ja palauttaa sen.
@@ -93,6 +93,6 @@ public class Keko {
      * @return oikean lapsen sijainti
      */
     public int etsiOikeaLapsi(int sijainti) {
-        return 2*sijainti+1;
+        return 2 * sijainti + 1;
     }
 }
