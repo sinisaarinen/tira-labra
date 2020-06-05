@@ -6,6 +6,10 @@ Tämä sovellus tullaan toteuttamaan osana Helsingin yliopiston alkukesän 2020 
 
 [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
 
+[Toteutusdokumentti](dokumentaatio/toteutus.md)
+
+[Testausdokumentti](dokumentaatio/testaus.md)
+
 ## Viikkoraportit
 
 [Viikko 1](dokumentaatio/viikkoraportit/viikko1.md)
@@ -13,6 +17,8 @@ Tämä sovellus tullaan toteuttamaan osana Helsingin yliopiston alkukesän 2020 
 [Viikko 2](dokumentaatio/viikkoraportit/viikko2.md)
 
 [Viikko 3](dokumentaatio/viikkoraportit/viikko3.md)
+
+[Viikko 4](dokumentaatio/viikkoraportit/viikko4.md)
 
 ## Komentorivitoiminnot
 
