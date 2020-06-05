@@ -47,7 +47,7 @@ public class Keko {
     public void lisaaSolmu(Solmu solmu) {
         koko++;
         int i = koko;
-        while(i > 0 && solmut[etsiVanhempi(i)] == null || i > 0 && solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {
+        while (i > 0 && solmut[etsiVanhempi(i)] == null || i > 0 && solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {
             vaihdaSolmut(i, etsiVanhempi(i));
             i = etsiVanhempi(i);
         }
@@ -133,7 +133,7 @@ public class Keko {
      * @param sijainti solmun sijainti keossa
      * @return vanhemman sijainti
      */
-    public int etsiVanhempi (int sijainti) {
+    public int etsiVanhempi(int sijainti) {
         int vanhempi = (int) Math.floor(sijainti / 2);
         return vanhempi;
     }

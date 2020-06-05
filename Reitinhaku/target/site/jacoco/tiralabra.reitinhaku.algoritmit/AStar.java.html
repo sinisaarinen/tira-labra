@@ -5,11 +5,49 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
+import tiralabra.reitinhaku.tietorakenteet.Keko;
+import tiralabra.reitinhaku.tietorakenteet.Solmu;
+
 /**
  *
- * @author saasini
+ * Luokka vastaa A*-algoritmin toteutuksesta.
  */
-<span class="nc" id="L12">public class AStar {</span>
+public class AStar {
     
+    private Keko minimiKeko;
+    private char[][] kartta;
+    
+<span class="fc" id="L20">    public AStar(char[][] kartta) {</span>
+<span class="fc" id="L21">        this.kartta = kartta;</span>
+<span class="fc" id="L22">        this.minimiKeko = new Keko(kartta.length * kartta[0].length);</span>
+<span class="fc" id="L23">    }</span>
+    /**
+     * Metodi saa parametreikseen alku- ja loppusolmut. Se asettaa alkusolmulle
+     * alkuetäisyyden sekä arvioi kartan kullekin solmulle etäisyydet loppuun.
+     * 
+     * @param alku solmu, josta reitti alkaa
+     * @param loppu solmu, johon reitti päättyy
+     */
+    public void alusta(Solmu alku, Solmu loppu) {
+<span class="fc" id="L32">        alku.setLyhinEtaisyysAlusta(0);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; kartta.length; i++) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (int j = 0; j &lt; kartta[0].length; j++) {</span>
+<span class="fc" id="L35">                Solmu solmu = new Solmu(i, j);</span>
+<span class="fc" id="L36">                arvioiEtaisyysLoppuun(solmu, loppu);</span>
+            }
+        }
+<span class="fc" id="L39">    }</span>
+    /**
+     * Metodi arvioi ja asettaa etäisyydet nykyisestä solmusta loppuun.
+     * 
+     * @param solmu nykyinen solmu
+     * @param loppu solmu, johon reitti päättyy
+     */
+    public void arvioiEtaisyysLoppuun(Solmu solmu, Solmu loppu) {
+<span class="fc" id="L47">        int etaisyysLoppuun = </span>
+<span class="fc" id="L48">                (Math.abs(loppu.getX() - solmu.getX())</span>
+<span class="fc" id="L49">                + Math.abs(loppu.getY() - solmu.getY()));</span>
+<span class="fc" id="L50">        solmu.setEtaisyysArvioLoppuun(etaisyysLoppuun);</span>
+<span class="fc" id="L51">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

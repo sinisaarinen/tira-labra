@@ -5,12 +5,114 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
+import tiralabra.reitinhaku.tietorakenteet.Keko;
+import tiralabra.reitinhaku.tietorakenteet.Solmu;
+
 /**
  *
- * @author saasini
+ * Luokka vastaa Dijkstran algoritmin toteutuksesta.
  */
-<span class="nc" id="L12">public class Dijkstra {</span>
+public class Dijkstra {
     
+    private Keko minimiKeko;
+    private char[][] kartta;
+    private int lyhinReitti;
+    private int[][] etaisyys;
+    private boolean[][] kasitelty;
+    
+<span class="fc" id="L23">    public Dijkstra(char[][] kartta) {</span>
+<span class="fc" id="L24">        this.kartta = kartta;</span>
+<span class="fc" id="L25">        this.minimiKeko = new Keko(kartta.length * kartta[0].length);</span>
+<span class="fc" id="L26">        this.lyhinReitti = 0;</span>
+<span class="fc" id="L27">        this.etaisyys = new int[kartta.length][kartta[0].length];</span>
+<span class="fc" id="L28">        this.kasitelty = new boolean[kartta.length][kartta[0].length];</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (int i = 0; i &lt; kartta.length; i++) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            for (int j = 0; j &lt; kartta[0].length; j++) {</span>
+<span class="fc" id="L31">                etaisyys[i][j] = Integer.MAX_VALUE;</span>
+<span class="fc" id="L32">                kasitelty[i][j] = false;</span>
+            }
+        }
+<span class="fc" id="L35">    }</span>
+    /**
+     * Metodi saa parametreikseen reitin alku- ja loppusolmut ja laskee niiden
+     * välisen lyhyimmän reitin. Alkusolmu lisätään kekoon, jonka jälkeen kekoa
+     * käsitellään kunnes se on tyhjä. Jos käsiteltävä solmu on sama kuin loppu-
+     * solmu, kutsutaan metodia reitinPituus. Jos alkusolmusta ei ole mahdollista
+     * päästä loppusolmuun, metodi palauttaa -1.
+     * 
+     * @param alku solmu, josta reitti alkaa
+     * @param solmu, johon reitti päättyy
+     * @return reitin pituus
+     */
+    public int laskeReitinPituus(Solmu alku, Solmu loppu) {
+<span class="fc" id="L48">        this.minimiKeko.lisaaSolmu(alku);</span>
 
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        while (!minimiKeko.isEmpty()) {</span>
+<span class="fc" id="L51">            Solmu kasiteltava = minimiKeko.poistaPienin();</span>
+<span class="fc" id="L52">            kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;</span>
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (kasiteltava.equals(loppu)) {</span>
+<span class="fc" id="L55">                return reitinPituus(kasiteltava);</span>
+            }
+<span class="fc" id="L57">            etsi(kasiteltava, loppu);</span>
+<span class="fc" id="L58">        }</span>
+<span class="nc" id="L59">        return -1;</span>
+    }
+    /**
+     * Metodi saa parametrikseen solmun, johon reitti päättyy. Se laskee reitin
+     * pituuden etsimällä aina solmun vanhemman, kunnes vanhempia ei enää ole.
+     * Tällöin reitin pituus on saatu laskettua.
+     * 
+     * @param solmu solmu, johon reitti päättyy
+     * @return reitin pituus
+     */
+    public int reitinPituus(Solmu solmu) {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (solmu.getVanhempi() != null) {</span>
+<span class="fc" id="L71">            lyhinReitti++;</span>
+<span class="fc" id="L72">            reitinPituus(solmu.getVanhempi());</span>
+        }
+<span class="fc" id="L74">        return lyhinReitti;</span>
+    }
+    /**
+     * Metodi saa parametreikseen käsiteltävän solmun ja loppusolmun. Se kutsuu
+     * metodia tutkiEtaisyyksia kaikkien solmun naapureiden osalta tarkistaakseen,
+     * voidaanko naapurisolmujen etäisyyksiä päivittää.
+     * 
+     * @param kasiteltava käsiteltävä solmu
+     * @param loppu loppusolmu
+     */
+    public void etsi(Solmu kasiteltava, Solmu loppu) {
+        //askel ylös
+<span class="fc" id="L86">        tutkiEtaisyyksia(kasiteltava.getX()-1, kasiteltava.getY(), kasiteltava, loppu);</span>
+        //askel alas
+<span class="fc" id="L88">        tutkiEtaisyyksia(kasiteltava.getX()+1, kasiteltava.getY(), kasiteltava, loppu);</span>
+        //askel vasemmalle
+<span class="fc" id="L90">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()-1, kasiteltava, loppu);</span>
+        //askel oikealle
+<span class="fc" id="L92">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()+1, kasiteltava, loppu);  </span>
+<span class="fc" id="L93">    }</span>
+    /**
+     * Metodi tarkistaa ensin, onko annettu solmu kartalla ja onko siihen mahdollista
+     * edetä. Tämän jälkeen solmulle lasketaan etäisyys alusta ja se lisätään kekoon.
+     * 
+     * @param y solmun y-koordinaatti
+     * @param x solmun x-koordinaatti
+     * @param edeltaja edeltäjäsolmu
+     * @param loppu loppusolmu
+     */
+    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu) {
+<span class="pc bpc" id="L104" title="3 of 12 branches missed.">        if ((x &gt;= 0 &amp;&amp; x &lt; kartta.length) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt; kartta[0].length) &amp;&amp; kartta[x][y] == '.' &amp;&amp; kasitelty[x][y] == false) {</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            if (edeltaja.getLyhinEtaisyysAlusta() + 1 &lt; etaisyys[x][y]) {</span>
+<span class="fc" id="L106">                int etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta()+1;</span>
+<span class="fc" id="L107">                etaisyys[x][y] = etaisyysAlusta;</span>
+<span class="fc" id="L108">                Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                </span>
+<span class="fc" id="L109">                minimiKeko.lisaaSolmu(solmu);</span>
+            }
+        }
+<span class="fc" id="L112">    }</span>
+    
+    public Keko getKeko() {
+<span class="fc" id="L115">        return this.minimiKeko;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

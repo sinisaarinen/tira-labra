@@ -12,13 +12,13 @@ import tiralabra.reitinhaku.tietorakenteet.Solmu;
  *
  * Luokka vastaa A*-algoritmin toteutuksesta.
  */
-public class AStar extends Dijkstra {
+public class AStar {
     
     private Keko minimiKeko;
     private char[][] kartta;
     
     public AStar(char[][] kartta) {
-        super(kartta);
+        this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
     }
     /**

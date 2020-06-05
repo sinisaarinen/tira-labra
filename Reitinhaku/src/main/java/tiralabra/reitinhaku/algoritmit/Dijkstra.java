@@ -83,13 +83,13 @@ public class Dijkstra {
      */
     public void etsi(Solmu kasiteltava, Solmu loppu) {
         //askel ylös
-        tutkiEtaisyyksia(kasiteltava.getX()-1, kasiteltava.getY(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY(), kasiteltava, loppu);
         //askel alas
-        tutkiEtaisyyksia(kasiteltava.getX()+1, kasiteltava.getY(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY(), kasiteltava, loppu);
         //askel vasemmalle
-        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()-1, kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() - 1, kasiteltava, loppu);
         //askel oikealle
-        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()+1, kasiteltava, loppu);  
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() + 1, kasiteltava, loppu);  
     }
     /**
      * Metodi tarkistaa ensin, onko annettu solmu kartalla ja onko siihen mahdollista
@@ -103,7 +103,7 @@ public class Dijkstra {
     public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu) {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {
             if (edeltaja.getLyhinEtaisyysAlusta() + 1 < etaisyys[x][y]) {
-                int etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta()+1;
+                int etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta() + 1;
                 etaisyys[x][y] = etaisyysAlusta;
                 Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                
                 minimiKeko.lisaaSolmu(solmu);
