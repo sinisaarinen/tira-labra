@@ -30,10 +30,9 @@ public class AStar extends Dijkstra {
      */
     public void alusta(Solmu alku, Solmu loppu) {
         alku.setLyhinEtaisyysAlusta(0);
-        //hae tässä kartta
         for (int i = 0; i < kartta.length; i++) {
             for (int j = 0; j < kartta[0].length; j++) {
-                Solmu solmu = new Solmu(j, i);
+                Solmu solmu = new Solmu(i, j);
                 arvioiEtaisyysLoppuun(solmu, loppu);
             }
         }

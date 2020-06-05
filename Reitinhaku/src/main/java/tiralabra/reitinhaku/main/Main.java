@@ -33,17 +33,16 @@ public class Main {
         int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
         long lopetusAika = System.currentTimeMillis();
         
-        long aloitusAika2 = System.currentTimeMillis();
+        //long aloitusAika2 = System.currentTimeMillis();
         //A*-haku
-        long lopetusAika2 = System.currentTimeMillis();
+        //long lopetusAika2 = System.currentTimeMillis();
 
 
         System.out.println();
         System.out.println("Lyhin reitti Dijkstran algoritmilla oli pituudeltaan " + lyhinReitti);
         //System.out.println("Lyhin reitti A*-algoritmin etsimänä oli pituudeltaan  " + lyhinReitti2);
-
-        System.out.println();
-        System.out.println("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
+        //System.out.println();
+        //System.out.println("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
         //System.out.println("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
     } 
 }

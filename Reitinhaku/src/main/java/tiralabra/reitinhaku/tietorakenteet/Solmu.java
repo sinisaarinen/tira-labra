@@ -22,14 +22,14 @@ public class Solmu implements Comparable<Solmu> {
     private Solmu vasenNaapuri;
     private Solmu oikeaNaapuri;
     
-    public Solmu(int y, int x) {
+    public Solmu(int x, int y) {
         this.x = x;
         this.y = y;
         this.lyhinEtaisyysAlusta = -1;
         this.sijaintiKeossa = -1;
     }
     
-    public Solmu(int y, int x, int lyhinEtaisyysAlusta, Solmu vanhempi) {
+    public Solmu(int x, int y, int lyhinEtaisyysAlusta, Solmu vanhempi) {
         this.x = x;
         this.y = y;
         this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;

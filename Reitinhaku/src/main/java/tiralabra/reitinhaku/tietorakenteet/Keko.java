@@ -153,4 +153,8 @@ public class Keko {
             return false;
         }
     }
+    
+    public int getLisatytSolmut() {
+        return this.koko;
+    }
 }

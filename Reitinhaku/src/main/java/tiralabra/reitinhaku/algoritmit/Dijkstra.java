@@ -17,11 +17,19 @@ public class Dijkstra {
     private Keko minimiKeko;
     private char[][] kartta;
     private int lyhinReitti;
+    private int[][] etaisyys;
+    private boolean[][] kasitelty;
     
     public Dijkstra(char[][] kartta) {
         this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
         this.lyhinReitti = 0;
+        for (int i = 0; i < kartta.length; i++) {
+            for (int j = 0; j < kartta[0].length; j++) {
+                etaisyys[i][j] = Integer.MAX_VALUE;
+                kasitelty[i][j] = false;
+            }
+        }
     }
     /**
      * Metodi saa parametreikseen reitin alku- ja loppusolmut ja laskee niiden
@@ -39,6 +47,7 @@ public class Dijkstra {
 
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
+            kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
 
             if (kasiteltava.equals(loppu)) {
                 return reitinPituus(kasiteltava);
@@ -72,13 +81,13 @@ public class Dijkstra {
      */
     public void etsi(Solmu kasiteltava, Solmu loppu) {
         //askel ylös
-        tutkiEtaisyyksia(kasiteltava.getY()-1, kasiteltava.getX(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX()-1, kasiteltava.getY(), kasiteltava, loppu);
         //askel alas
-        tutkiEtaisyyksia(kasiteltava.getY()+1, kasiteltava.getX(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX()+1, kasiteltava.getY(), kasiteltava, loppu);
         //askel vasemmalle
-        tutkiEtaisyyksia(kasiteltava.getY(), kasiteltava.getX()-1, kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()-1, kasiteltava, loppu);
         //askel oikealle
-        tutkiEtaisyyksia(kasiteltava.getY(), kasiteltava.getX()+1, kasiteltava, loppu);  
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY()+1, kasiteltava, loppu);  
     }
     /**
      * Metodi tarkistaa ensin, onko annettu solmu kartalla ja onko siihen mahdollista
@@ -89,12 +98,18 @@ public class Dijkstra {
      * @param edeltaja edeltäjäsolmu
      * @param loppu loppusolmu
      */
-    public void tutkiEtaisyyksia(int y, int x, Solmu edeltaja, Solmu loppu) {
-        if ((x >= 0 && x < kartta[0].length) && (y >= 0 && y < kartta.length) && kartta[x][y] == '.') {
-            //tähän tulee nykyisen etäisyyden ja uuden lasketun etäisyyden vertailu
-            int etäisyysAlusta = edeltaja.getLyhinEtaisyysAlusta()+1;
-            Solmu solmu = new Solmu(y, x, etäisyysAlusta, edeltaja);                
-            minimiKeko.lisaaSolmu(solmu);
+    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu) {
+        if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {
+            if (edeltaja.getLyhinEtaisyysAlusta() + 1 < etaisyys[x][y]) {
+                int etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta()+1;
+                etaisyys[x][y] = etaisyysAlusta;
+                Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                
+                minimiKeko.lisaaSolmu(solmu);
+            }
         }
+    }
+    
+    public Keko getKeko() {
+        return this.minimiKeko;
     }
 }
