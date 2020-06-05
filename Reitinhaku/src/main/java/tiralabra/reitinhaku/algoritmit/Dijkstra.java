@@ -24,6 +24,8 @@ public class Dijkstra {
         this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
         this.lyhinReitti = 0;
+        this.etaisyys = new int[kartta.length][kartta[0].length];
+        this.kasitelty = new boolean[kartta.length][kartta[0].length];
         for (int i = 0; i < kartta.length; i++) {
             for (int j = 0; j < kartta[0].length; j++) {
                 etaisyys[i][j] = Integer.MAX_VALUE;
