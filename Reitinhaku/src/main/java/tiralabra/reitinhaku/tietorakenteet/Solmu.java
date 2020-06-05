@@ -36,7 +36,12 @@ public class Solmu implements Comparable<Solmu> {
         this.vanhempi = vanhempi;
         this.sijaintiKeossa = -1;
     }
-    
+    /**
+     * Metodi asettaa solmulle naapurit kaikkiin neljään ilmansuuntaan.
+     * 
+     * @param x solmun x-koordinaatti
+     * @param y solmun y-koordinaatti
+     */
     public void setNaapurit(int x, int y) {
         this.ylaNaapuri = new Solmu(x, y - 1);
         this.alaNaapuri = new Solmu(x, y + 1);
