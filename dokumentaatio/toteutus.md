@@ -1,0 +1,5 @@
+# Toteutus
+
+Tällä hetkellä sovellus on toteutettu siten, että Main-luokan käynnistäminen lataa projektin tiedostoista kartan ja kutsuu Kartanlukija-luokkaa, jossa tiedoston käsittely ja muuttaminen matriisiksi tapahtuu. Jos karttaa ei löydy tai sen luku ei onnistu, ilmoittaa sovellus tästä. Tässä vaiheessa en ole vielä toteuttanut käyttöliittymää, jossa käyttäjä pääsisi valitsemaan itse alku- ja loppupisteet, vaan olen syöttänyt ne itse valmiiksi Main-luokkaan.
+
+Tällä hetkellä Dijkstran algoritmi saa parametrikseen matriisiksi muutetun kartan sekä alku- ja loppusolmut, joiden välille se etsii lyhyimmän reitin. Main-luokkaan on toteutettu myös ajan mittaus. Kun lyhyin reitti löytyy, ilmoittaa ohjelma käyttäjälle reitin pituuden ja sen etsimiseen kuluneen ajan (Dijkstran algoritmilla). A*-algoritmin toteutus on vielä kesken, mutta sen toteutus on tarkoitus viimeistellä ensi viikolla, jolloin algoritmeja ja niiden suoritusaikoja on mahdollista vertailla. Ensi viikolla on myös tarkoitus aloittaa käyttöliittymän toteutus.
