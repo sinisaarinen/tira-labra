@@ -19,6 +19,11 @@ public class Keko {
         this.solmut = new Solmu[koko];
     }
     
+    public Keko() {
+        this.koko = -1;
+        this.solmut = new Solmu[10];
+    }
+    
     public Solmu getPienin() {
         return solmut[0];
     }
@@ -135,5 +140,17 @@ public class Keko {
     
     public int getKeonKoko() {
         return solmut.length;
+    }
+    /**
+     * Metodi tarkistaa, onko keko tyhjä.
+     * 
+     * @return true jos keko on tyhjä, muuten false
+     */
+    public boolean isEmpty() {
+        if (getKeonKoko() == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

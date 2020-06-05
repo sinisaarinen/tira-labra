@@ -17,6 +17,10 @@ public class Solmu implements Comparable<Solmu> {
     private int etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
     private int sijaintiKeossa; //Minimikeon käyttöön
+    private Solmu ylaNaapuri;
+    private Solmu alaNaapuri;
+    private Solmu vasenNaapuri;
+    private Solmu oikeaNaapuri;
     
     public Solmu(int y, int x) {
         this.x = x;
@@ -31,6 +35,30 @@ public class Solmu implements Comparable<Solmu> {
         this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;
         this.vanhempi = vanhempi;
         this.sijaintiKeossa = -1;
+    }
+    
+    public void setNaapurit(int x, int y) {
+        this.ylaNaapuri = new Solmu(x, y - 1);
+        this.alaNaapuri = new Solmu(x, y + 1);
+        this.vasenNaapuri = new Solmu((x - 1), y);
+        this.oikeaNaapuri = new Solmu((x + 1), y);
+
+    }
+    
+    public Solmu getYlaNaapuri() {
+        return this.ylaNaapuri;
+    }
+    
+    public Solmu getAlaNaapuri() {
+        return this.alaNaapuri;
+    }
+    
+    public Solmu getVasenNaapuri() {
+        return this.vasenNaapuri;
+    }
+    
+    public Solmu getOikeaNaapuri() {
+        return this.oikeaNaapuri;
     }
 
     public int getX() {
