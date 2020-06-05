@@ -20,7 +20,7 @@ public class Dijkstra {
     
     public Dijkstra(char[][] kartta) {
         this.kartta = kartta;
-        this.minimiKeko = new Keko();
+        this.minimiKeko = new Keko(kartta.length * kartta[0].length);
         this.lyhinReitti = 0;
     }
     /**
@@ -52,7 +52,7 @@ public class Dijkstra {
      * pituuden etsimällä aina solmun vanhemman, kunnes vanhempia ei enää ole.
      * Tällöin reitin pituus on saatu laskettua.
      * 
-     * @param alku solmu, johon reitti päättyy
+     * @param solmu solmu, johon reitti päättyy
      * @return reitin pituus
      */
     public int reitinPituus(Solmu solmu) {
@@ -91,6 +91,7 @@ public class Dijkstra {
      */
     public void tutkiEtaisyyksia(int y, int x, Solmu edeltaja, Solmu loppu) {
         if ((x >= 0 && x < kartta[0].length) && (y >= 0 && y < kartta.length) && kartta[x][y] == '.') {
+            //tähän tulee nykyisen etäisyyden ja uuden lasketun etäisyyden vertailu
             int etäisyysAlusta = edeltaja.getLyhinEtaisyysAlusta()+1;
             Solmu solmu = new Solmu(y, x, etäisyysAlusta, edeltaja);                
             minimiKeko.lisaaSolmu(solmu);

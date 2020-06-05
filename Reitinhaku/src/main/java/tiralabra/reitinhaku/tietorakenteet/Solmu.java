@@ -13,7 +13,7 @@ public class Solmu implements Comparable<Solmu> {
     
     private int x;
     private int y;
-    private int lyhinEtaisyysAlusta; //A*-algoritmille
+    private int lyhinEtaisyysAlusta; //A*-algoritmille ja Dijkstralle
     private int etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
     private int sijaintiKeossa; //Minimikeon käyttöön
