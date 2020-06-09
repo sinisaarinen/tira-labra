@@ -37,7 +37,7 @@ public class AStarTest {
         Solmu alku = new Solmu(10, 2);
         assertEquals(-1, alku.getLyhinEtaisyysAlusta());
         Solmu loppu = new Solmu(5, 2);
-        astar.alusta(alku, loppu);
+        astar.laskeReitti(alku, loppu);
         assertEquals(0, alku.getLyhinEtaisyysAlusta());
     }
 }
