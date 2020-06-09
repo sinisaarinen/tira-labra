@@ -90,8 +90,8 @@ public class AStar {
             int etaisyysAlustaInt = edeltaja.getLyhinEtaisyysAlusta() + 1;
             etaisyysAlusta[x][y] = etaisyysAlustaInt;
             int etaisyysLopusta = arvioiEtaisyysLoppuun(x, y, loppu);
-            int yhteisEtaisyys = etaisyysAlustaInt + etaisyysLopusta;
-            Solmu solmu = new Solmu(x, y, yhteisEtaisyys, edeltaja);                
+            Solmu solmu = new Solmu(x, y, etaisyysAlustaInt, edeltaja);
+            solmu.setEtaisyysArvioLoppuun(etaisyysLopusta);
             minimiKeko.lisaaSolmu(solmu);
         }
     }
