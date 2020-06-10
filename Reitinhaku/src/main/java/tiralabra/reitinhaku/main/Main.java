@@ -14,7 +14,6 @@ import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
  * @author saasini
@@ -39,8 +38,6 @@ public class Main {
         int lyhinReitti2 = astar.laskeReitti(alku, loppu);
         long lopetusAika2 = System.currentTimeMillis();
 
-
-        System.out.println();
         System.out.println("Lyhin reitti Dijkstran algoritmilla oli pituudeltaan " + lyhinReitti);
         System.out.println("Lyhin reitti A*-algoritmin etsimänä oli pituudeltaan  " + lyhinReitti2);
         System.out.println();

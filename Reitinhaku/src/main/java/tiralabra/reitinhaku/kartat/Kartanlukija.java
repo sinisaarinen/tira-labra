@@ -8,7 +8,6 @@ package tiralabra.reitinhaku.kartat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 /**
  *
  * Luokka vastaa .map-tyyppisten karttatiedostojen lukemisesta ja niiden
@@ -18,7 +17,6 @@ public class Kartanlukija {
     
     private File kartta;
     private Scanner lukija;
-    
      /**
      * Konstruktori saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
      * @param tiedosto
