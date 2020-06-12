@@ -40,4 +40,20 @@ public class AStarTest {
         astar.laskeReitti(alku, loppu);
         assertEquals(0, alku.getLyhinEtaisyysAlusta());
     }
+    
+    @Test
+    public void lyhinReittiOnOikeanPituinen() {
+        Solmu eka = new Solmu(10, 0);
+        Solmu toka = new Solmu(14, 0);
+        int pituus = astar.laskeReitti(eka, toka);
+        assertEquals(4, pituus);
+    }
+    
+    @Test
+    public void kartanUlkopuolistaSolmuaEiLisataKekoon() {
+        Solmu edeltaja = new Solmu(0, 0);
+        Solmu loppu = new Solmu(20, 10);
+        astar.tutkiEtaisyyksia(-1, 0, edeltaja, loppu);
+        assertEquals(-1, astar.getKeko().getLisatytSolmut());
+    }
 }

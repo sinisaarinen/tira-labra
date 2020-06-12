@@ -46,10 +46,12 @@ public class Dijkstra {
      */
     public int laskeReitinPituus(Solmu alku, Solmu loppu) {
         this.minimiKeko.lisaaSolmu(alku);
+        alku.setKekoon();
 
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
             kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
+            kasiteltava.setKasitelty();
 
             if (kasiteltava.equals(loppu)) {
                 return reitinPituus(kasiteltava);
@@ -107,6 +109,7 @@ public class Dijkstra {
                 etaisyys[x][y] = etaisyysAlusta;
                 Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                
                 minimiKeko.lisaaSolmu(solmu);
+                solmu.setKekoon();
             }
         }
     }

@@ -8,7 +8,6 @@ package tiralabra.reitinhaku.kartat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 /**
  *
  * Luokka vastaa .map-tyyppisten karttatiedostojen lukemisesta ja niiden
@@ -18,26 +17,25 @@ public class Kartanlukija {
     
     private File kartta;
     private Scanner lukija;
-    
      /**
      * Konstruktori saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
      * @param tiedosto
      * @throws FileNotFoundException 
      */
-<span class="fc" id="L27">    public Kartanlukija(File tiedosto) throws FileNotFoundException {</span>
-<span class="fc" id="L28">        this.kartta = tiedosto;        </span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (!lueKartta()) {</span>
-<span class="fc" id="L30">            throw new FileNotFoundException();</span>
+<span class="fc" id="L25">    public Kartanlukija(File tiedosto) throws FileNotFoundException {</span>
+<span class="fc" id="L26">        this.kartta = tiedosto;        </span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!lueKartta()) {</span>
+<span class="fc" id="L28">            throw new FileNotFoundException();</span>
         }        
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L30">    }</span>
     /**
      * Metodi saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
      * @param tiedosto
      * @return true jos lueKartta-metodi palauttaa true, muuten false
      */
     public boolean lataaKartta(File tiedosto) {
-<span class="fc" id="L39">        kartta = tiedosto;</span>
-<span class="fc" id="L40">        return lueKartta();</span>
+<span class="fc" id="L37">        kartta = tiedosto;</span>
+<span class="fc" id="L38">        return lueKartta();</span>
     }
     /**
      * Metodi lukee .map-tiedoston.
@@ -45,10 +43,10 @@ public class Kartanlukija {
      */
     public boolean lueKartta() {
         try {            
-<span class="fc" id="L48">            lukija = new Scanner(kartta);</span>
-<span class="fc" id="L49">            return true;</span>
-<span class="fc" id="L50">        } catch (FileNotFoundException poikkeus) {</span>
-<span class="fc" id="L51">            return false;</span>
+<span class="fc" id="L46">            lukija = new Scanner(kartta);</span>
+<span class="fc" id="L47">            return true;</span>
+<span class="fc" id="L48">        } catch (FileNotFoundException poikkeus) {</span>
+<span class="fc" id="L49">            return false;</span>
         }
     }
      /**
@@ -60,16 +58,16 @@ public class Kartanlukija {
         String korkeus;
         String leveys;
         try {
-<span class="fc" id="L63">            lukija.nextLine();</span>
-<span class="fc" id="L64">            korkeus = lukija.nextLine();</span>
-<span class="fc" id="L65">            leveys = lukija.nextLine();            </span>
-<span class="fc" id="L66">            char[][] matriisi = </span>
-<span class="fc" id="L67">                new char[Integer.parseInt(korkeus.substring(7))]</span>
-<span class="fc" id="L68">                        [Integer.parseInt(leveys.substring(6))];</span>
-<span class="fc" id="L69">            lukija.nextLine();                      </span>
-<span class="fc" id="L70">            return matriisi;</span>
-<span class="nc" id="L71">        } catch (Exception poikkeus) {</span>
-<span class="nc" id="L72">            throw new Exception(&quot;Valittu tiedosto ei kelpaa.&quot;);            </span>
+<span class="fc" id="L61">            lukija.nextLine();</span>
+<span class="fc" id="L62">            korkeus = lukija.nextLine();</span>
+<span class="fc" id="L63">            leveys = lukija.nextLine();            </span>
+<span class="fc" id="L64">            char[][] matriisi = </span>
+<span class="fc" id="L65">                new char[Integer.parseInt(korkeus.substring(7))]</span>
+<span class="fc" id="L66">                        [Integer.parseInt(leveys.substring(6))];</span>
+<span class="fc" id="L67">            lukija.nextLine();                      </span>
+<span class="fc" id="L68">            return matriisi;</span>
+<span class="nc" id="L69">        } catch (Exception poikkeus) {</span>
+<span class="nc" id="L70">            throw new Exception(&quot;Valittu tiedosto ei kelpaa.&quot;);            </span>
         }        
     }
      /**
@@ -78,11 +76,11 @@ public class Kartanlukija {
      * @throws Exception 
      */
     public char[][] muutaMatriisiksi() throws Exception {
-<span class="fc" id="L81">        char[][] matriisi = luoMatriisi();</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">        for (int i = 0; i &lt; matriisi.length; i++) {</span>
-<span class="fc" id="L83">            matriisi[i] = lukija.nextLine().toCharArray();</span>
+<span class="fc" id="L79">        char[][] matriisi = luoMatriisi();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (int i = 0; i &lt; matriisi.length; i++) {</span>
+<span class="fc" id="L81">            matriisi[i] = lukija.nextLine().toCharArray();</span>
         }
-<span class="fc" id="L85">        return matriisi;</span>
+<span class="fc" id="L83">        return matriisi;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

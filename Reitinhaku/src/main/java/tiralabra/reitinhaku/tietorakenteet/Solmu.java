@@ -21,12 +21,16 @@ public class Solmu implements Comparable<Solmu> {
     private Solmu alaNaapuri;
     private Solmu vasenNaapuri;
     private Solmu oikeaNaapuri;
+    private boolean kasitelty;
+    private boolean onkoKeossa;
     
     public Solmu(int x, int y) {
         this.x = x;
         this.y = y;
         this.lyhinEtaisyysAlusta = -1;
         this.sijaintiKeossa = -1;
+        this.kasitelty = false;
+        this.onkoKeossa = false;
     }
     
     public Solmu(int x, int y, int lyhinEtaisyysAlusta, Solmu vanhempi) {
@@ -35,6 +39,8 @@ public class Solmu implements Comparable<Solmu> {
         this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;
         this.vanhempi = vanhempi;
         this.sijaintiKeossa = -1;
+        this.kasitelty = false;
+        this.onkoKeossa = false;
     }
     /**
      * Metodi asettaa solmulle naapurit kaikkiin neljään ilmansuuntaan.
@@ -47,11 +53,26 @@ public class Solmu implements Comparable<Solmu> {
         this.alaNaapuri = new Solmu(x, y + 1);
         this.vasenNaapuri = new Solmu((x - 1), y);
         this.oikeaNaapuri = new Solmu((x + 1), y);
-
     }
     
     public Solmu getYlaNaapuri() {
         return this.ylaNaapuri;
+    }
+    
+    public void setKasitelty() {
+        this.kasitelty = true;
+    }
+    
+    public boolean getKasitelty() {
+        return this.kasitelty;
+    }
+    
+    public void setKekoon() {
+        this.onkoKeossa = true;
+    }
+    
+    public boolean onkoKeossa() {
+        return onkoKeossa;
     }
     
     public Solmu getAlaNaapuri() {

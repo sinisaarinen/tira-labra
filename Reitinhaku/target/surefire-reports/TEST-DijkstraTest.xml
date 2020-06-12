@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="DijkstraTest" time="0.073" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="DijkstraTest" time="0.063" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.7+10-post-Ubuntu-2ubuntu218.04"/>
@@ -32,7 +32,7 @@
     <property name="java.class.version" value="55.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.3.0-53-generic"/>
+    <property name="os.version" value="5.3.0-59-generic"/>
     <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/saasini"/>
     <property name="user.timezone" value="Europe/Helsinki"/>
@@ -61,6 +61,6 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="DijkstraTest" name="kartanUlkopuolistaSolmuaEiLisataKekoon" time="0.042"/>
-  <testcase classname="DijkstraTest" name="lyhinReittiOnOikeanPituinen" time="0.031"/>
+  <testcase classname="DijkstraTest" name="kartanUlkopuolistaSolmuaEiLisataKekoon" time="0.04"/>
+  <testcase classname="DijkstraTest" name="lyhinReittiOnOikeanPituinen" time="0.023"/>
 </testsuite>

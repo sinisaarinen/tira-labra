@@ -65,10 +65,12 @@ public class AStar {
         alku.setLyhinEtaisyysAlusta(0);
         etaisyysAlusta[alku.getX()][alku.getY()] = 0;
         minimiKeko.lisaaSolmu(alku);
+        alku.setKekoon();
 
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
             kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
+            kasiteltava.setKasitelty();
 
             if (kasiteltava.equals(loppu)) {
                 return reitinPituus(kasiteltava);
@@ -130,7 +132,12 @@ public class AStar {
                 Solmu solmu = new Solmu(x, y, etaisyysAlustaInt, edeltaja);
                 solmu.setEtaisyysArvioLoppuun(etaisyysLopusta);
                 minimiKeko.lisaaSolmu(solmu);
+                solmu.setKekoon();
             }
         }
+    }
+    
+    public Keko getKeko() {
+        return this.minimiKeko;
     }
 }

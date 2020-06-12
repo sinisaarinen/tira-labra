@@ -15,45 +15,42 @@
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.io.FileNotFoundException;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.Scanner;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Level;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Logger;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.algoritmit.AStar;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.algoritmit.Dijkstra;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.kartat.Kartanlukija;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.tietorakenteet.Solmu;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * @author saasini</em>
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../tiralabra/reitinhaku/main/Main.html">Main</a> {
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) <strong class="jxr_keyword">throws</strong> FileNotFoundException, Exception {
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>          File kartta = <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"./kartat/London_2_256.map"</span>);
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>          <a href="../../../tiralabra/reitinhaku/kartat/Kartanlukija.html">Kartanlukija</a> kartanlukija = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/kartat/Kartanlukija.html">Kartanlukija</a>(kartta);
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">char</strong>[][] valittuKartta = kartanlukija.muutaMatriisiksi();
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>          
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a> alku = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a>(5, 2);
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a> loppu = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a>(240, 2);
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <a href="../../../tiralabra/reitinhaku/algoritmit/Dijkstra.html">Dijkstra</a> dijkstra = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/algoritmit/Dijkstra.html">Dijkstra</a>(valittuKartta);
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>          <a href="../../../tiralabra/reitinhaku/algoritmit/AStar.html">AStar</a> astar = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/algoritmit/AStar.html">AStar</a>(valittuKartta);
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>          
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">long</strong> aloitusAika = System.currentTimeMillis();
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">int</strong> lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <strong class="jxr_keyword">long</strong> lopetusAika = System.currentTimeMillis();
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>          
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>          <strong class="jxr_keyword">long</strong> aloitusAika2 = System.currentTimeMillis();
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">int</strong> lyhinReitti2 = astar.laskeReitti(alku, loppu);
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">long</strong> lopetusAika2 = System.currentTimeMillis();
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>          System.out.println(<span class="jxr_string">"Lyhin reitti Dijkstran algoritmilla oli pituudeltaan "</span> + lyhinReitti);
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>          System.out.println(<span class="jxr_string">"Lyhin reitti A*-algoritmin etsimänä oli pituudeltaan  "</span> + lyhinReitti2);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          System.out.println();
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          System.out.println(<span class="jxr_string">"Suoritusaika Dijkstran algoritmille oli "</span> + (lopetusAika - aloitusAika) + <span class="jxr_string">"ms."</span>);
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          System.out.println(<span class="jxr_string">"Suoritusaika A*-algoritmille oli "</span> + (lopetusAika2 - aloitusAika2) + <span class="jxr_string">"ms."</span>);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      } 
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  }
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.algoritmit.AStar;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.algoritmit.Dijkstra;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.kartat.Kartanlukija;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.tietorakenteet.Solmu;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> tiralabra.reitinhaku.ui.Kayttoliittyma;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * @author saasini</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../tiralabra/reitinhaku/main/Main.html">Main</a> {
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) <strong class="jxr_keyword">throws</strong> FileNotFoundException, Exception {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>          File kartta = <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"./kartat/London_2_256.map"</span>);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>          <a href="../../../tiralabra/reitinhaku/kartat/Kartanlukija.html">Kartanlukija</a> kartanlukija = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/kartat/Kartanlukija.html">Kartanlukija</a>(kartta);
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          <strong class="jxr_keyword">char</strong>[][] valittuKartta = kartanlukija.muutaMatriisiksi();
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a> alku = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a>(5, 2);
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a> loppu = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/tietorakenteet/Solmu.html">Solmu</a>(200, 200);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          <a href="../../../tiralabra/reitinhaku/algoritmit/Dijkstra.html">Dijkstra</a> dijkstra = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/algoritmit/Dijkstra.html">Dijkstra</a>(valittuKartta);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <a href="../../../tiralabra/reitinhaku/algoritmit/AStar.html">AStar</a> astar = <strong class="jxr_keyword">new</strong> <a href="../../../tiralabra/reitinhaku/algoritmit/AStar.html">AStar</a>(valittuKartta);
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <strong class="jxr_keyword">long</strong> aloitusAika = System.currentTimeMillis();
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          <strong class="jxr_keyword">int</strong> lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <strong class="jxr_keyword">long</strong> lopetusAika = System.currentTimeMillis();
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">long</strong> aloitusAika2 = System.currentTimeMillis();
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <strong class="jxr_keyword">int</strong> lyhinReitti2 = astar.laskeReitti(alku, loppu);
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          <strong class="jxr_keyword">long</strong> lopetusAika2 = System.currentTimeMillis();
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          System.out.println(<span class="jxr_string">"Lyhin reitti Dijkstran algoritmilla oli pituudeltaan "</span> + lyhinReitti);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          System.out.println(<span class="jxr_string">"Lyhin reitti A*-algoritmin etsimänä oli pituudeltaan "</span> + lyhinReitti2);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          System.out.println();
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          System.out.println(<span class="jxr_string">"Suoritusaika Dijkstran algoritmille oli "</span> + (lopetusAika - aloitusAika) + <span class="jxr_string">"ms."</span>);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          System.out.println(<span class="jxr_string">"Suoritusaika A*-algoritmille oli "</span> + (lopetusAika2 - aloitusAika2) + <span class="jxr_string">"ms."</span>);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      }
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2020. All rights reserved.</div>

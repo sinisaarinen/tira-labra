@@ -47,9 +47,9 @@ public class Keko {
     public void lisaaSolmu(Solmu solmu) {
 <span class="fc" id="L48">        koko++;</span>
 <span class="fc" id="L49">        int i = koko;</span>
-<span class="pc bpc" id="L50" title="2 of 8 branches missed.">        while(i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)] == null || i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {</span>
-<span class="nc" id="L51">            vaihdaSolmut(i, etsiVanhempi(i));</span>
-<span class="nc" id="L52">            i = etsiVanhempi(i);</span>
+<span class="pc bpc" id="L50" title="1 of 8 branches missed.">        while (i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)] == null || i &gt; 0 &amp;&amp; solmut[etsiVanhempi(i)].compareTo(solmu) == 1) {</span>
+<span class="fc" id="L51">            vaihdaSolmut(i, etsiVanhempi(i));</span>
+<span class="fc" id="L52">            i = etsiVanhempi(i);</span>
         }
 <span class="fc" id="L54">        solmut[i] = solmu;</span>
 <span class="fc" id="L55">        solmu.setSijainti(i);</span>
@@ -66,7 +66,7 @@ public class Keko {
 <span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (solmut[sijainti1] != null) {</span>
 <span class="fc" id="L67">            solmut[sijainti1].setSijainti(sijainti1);</span>
         }
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (solmut[sijainti2] != null) {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (solmut[sijainti2] != null) {</span>
 <span class="fc" id="L70">            solmut[sijainti2].setSijainti(sijainti2);</span>
         }
 <span class="fc" id="L72">    }</span>
@@ -133,7 +133,7 @@ public class Keko {
      * @param sijainti solmun sijainti keossa
      * @return vanhemman sijainti
      */
-    public int etsiVanhempi (int sijainti) {
+    public int etsiVanhempi(int sijainti) {
 <span class="fc" id="L137">        int vanhempi = (int) Math.floor(sijainti / 2);</span>
 <span class="fc" id="L138">        return vanhempi;</span>
     }
