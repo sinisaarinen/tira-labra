@@ -4,4 +4,4 @@ Tällä viikolla koodasin alustavan version A*-algoritmista ja pääsin vertaile
 
 Seuraavaksi ryhdyn rakentamaan käyttöliittymää, jolloin viimeistään paljastuu, toimivatko algoritmit todella oikein. Lisäksi vertailen algoritmeja eri kartoissa. Tavoitteena on rakentaa käyttöliittymä, joka näyttää graafisena esityksenä löydetyn reitin.
 
-Projektiin kului viikolla 5 aikaa noin 10 tuntia.
+Projektiin kului viikolla 5 aikaa noin 11 tuntia.
