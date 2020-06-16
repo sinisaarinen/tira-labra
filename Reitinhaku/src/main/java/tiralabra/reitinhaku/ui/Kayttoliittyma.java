@@ -5,6 +5,8 @@
  */
 package tiralabra.reitinhaku.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -13,10 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
+import tiralabra.reitinhaku.kartat.Kartanlukija;
 
 /**
  *
@@ -25,7 +30,12 @@ import tiralabra.reitinhaku.algoritmit.Dijkstra;
 public class Kayttoliittyma extends Application {
 
     @Override
-    public void start(Stage window) {
+    public void start(Stage window) throws FileNotFoundException, Exception {
+        
+        //karttajutut
+        File kartta = new File("./kartat/London_2_256.map");
+        Kartanlukija kartanlukija = new Kartanlukija(kartta);
+        char[][] valittuKartta = kartanlukija.muutaMatriisiksi();
         
         //napit
         Button menuNappi = new Button("Menu");
@@ -37,7 +47,7 @@ public class Kayttoliittyma extends Application {
         
         //vertailunäkymä
         BorderPane asettelu = new BorderPane();
-        Canvas piirtoalusta = new Canvas(640, 480);
+        Pane piirtoalusta = new Pane();
         Button dijkstraNappi = new Button("Dijsktra");
         Button JPSNappi = new Button("Jump Point Search");
         Button AStarNappi = new Button("A-Star");
@@ -71,6 +81,7 @@ public class Kayttoliittyma extends Application {
         //napit set on action
         vertailuNappi.setOnAction((event) -> {
             window.setScene(vertailuNakyma);
+            piirraKartta(valittuKartta, piirtoalusta);
         });
 
         menuNappi.setOnAction((event) -> {
@@ -80,6 +91,16 @@ public class Kayttoliittyma extends Application {
         window.setScene(menuNakyma);
         window.show();
 
+    }
+    
+    public void piirraKartta(char[][] kartta, Pane piirtoalusta) {
+        for (int x = 0; x < kartta.length; x++) {
+            for (int y = 0; y < kartta[0].length; y++) {
+                if (kartta[x][y] == '@') {
+                    piirtoalusta.getChildren().add(new Rectangle(x * 3, y * 3 + 5, 3, 3));
+                }
+            }
+        }
     }
 
     //Käytä ihan perus Canvas, jolle fillRectilla värillinen ruudukko kuvaamaan estettä, väylää, alkupistettä, 
