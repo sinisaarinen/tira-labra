@@ -1,9 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Reitinhaku,tiralabra.reitinhaku.main,Main,107,0,0,0,20,0,2,0,2,0
-Reitinhaku,tiralabra.reitinhaku.tietorakenteet,Keko,32,234,8,26,7,48,9,22,2,12
-Reitinhaku,tiralabra.reitinhaku.tietorakenteet,Solmu,60,127,1,9,13,44,9,18,8,14
-Reitinhaku,tiralabra.reitinhaku.algoritmit,AStar,2,284,1,23,1,48,1,18,0,7
-Reitinhaku,tiralabra.reitinhaku.algoritmit,Dijkstra,2,239,4,20,1,39,4,14,0,6
-Reitinhaku,tiralabra.reitinhaku.ui,Kayttoliittyma,3,0,0,0,1,0,1,0,1,0
-Reitinhaku,tiralabra.reitinhaku.ui,Piirtoalusta,3,0,0,0,1,0,1,0,1,0
-Reitinhaku,tiralabra.reitinhaku.kartat,Kartanlukija,6,79,0,4,2,23,0,7,0,5

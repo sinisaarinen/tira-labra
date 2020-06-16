@@ -41,5 +41,7 @@ public class Main {
         System.out.println();
         System.out.println("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
         System.out.println("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
+        
+        Kayttoliittyma.main(args);
     }
 }
