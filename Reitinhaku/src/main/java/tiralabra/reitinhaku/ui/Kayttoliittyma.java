@@ -17,11 +17,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
+import tiralabra.reitinhaku.tietorakenteet.Solmu;
 
 /**
  *
@@ -87,6 +89,14 @@ public class Kayttoliittyma extends Application {
         menuNappi.setOnAction((event) -> {
             window.setScene(menuNakyma);
         });
+        
+        laskeReittiNappi.setOnAction((event) -> {
+            Solmu alku = new Solmu(5, 2);
+            Solmu loppu = new Solmu(200, 200);
+            Dijkstra dijkstra = new Dijkstra(valittuKartta);
+            int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+            piirraReitti(valittuKartta, piirtoalusta, dijkstra.getReitti());
+        });
 
         window.setScene(menuNakyma);
         window.show();
@@ -97,7 +107,21 @@ public class Kayttoliittyma extends Application {
         for (int x = 0; x < kartta.length; x++) {
             for (int y = 0; y < kartta[0].length; y++) {
                 if (kartta[x][y] == '@') {
-                    piirtoalusta.getChildren().add(new Rectangle(x * 3, y * 3 + 5, 3, 3));
+                    Rectangle ruutu = new Rectangle(x * 3, y * 3 + 5, 3, 3);
+                    ruutu.setFill(Color.BLACK);
+                    piirtoalusta.getChildren().add(ruutu);
+                }
+            }
+        }
+    }
+    
+    public void piirraReitti(char[][] kartta, Pane piirtoalusta, boolean[][] reitti) {
+        for (int x = 0; x < kartta.length; x++) {
+            for (int y = 0; y < kartta[0].length; y++) {
+                if (reitti[x][y] == true) {
+                    Rectangle reittiRuutu = new Rectangle(x * 3, y * 3 + 5, 3, 3);
+                    reittiRuutu.setFill(Color.RED);
+                    piirtoalusta.getChildren().add(reittiRuutu);
                 }
             }
         }
