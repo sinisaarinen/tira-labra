@@ -7,7 +7,6 @@ package tiralabra.reitinhaku.algoritmit;
 
 import tiralabra.reitinhaku.tietorakenteet.Keko;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
  * Luokka vastaa Dijkstran algoritmin toteutuksesta.

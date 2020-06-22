@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package tiralabra.reitinhaku.tietorakenteet;
-
 /**
  * 
  * Luokka vastaa yksittäisistä solmuista ja niiden toiminnoista

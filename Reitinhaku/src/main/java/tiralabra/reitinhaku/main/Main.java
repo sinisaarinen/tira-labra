@@ -8,7 +8,7 @@ package tiralabra.reitinhaku.main;
 import tiralabra.reitinhaku.ui.Kayttoliittyma;
 /**
  *
- * @author saasini
+ * Main-luokka käynnistää käyttöliittymän.
  */
 public class Main {
 

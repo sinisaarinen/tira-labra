@@ -8,11 +8,9 @@ package tiralabra.reitinhaku.logiikka;
 import java.io.File;
 import java.io.FileNotFoundException;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
-import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
- * @author saasini
+ * Luokka vastaa sovelluslogiikasta.
  */
 public class Logiikka {
     
@@ -21,7 +19,13 @@ public class Logiikka {
     private Kartanlukija kartanlukija;
     private char[][] matriisi;
     private String valittuAlgo;
-    
+    /**
+     * Sovelluslogiikka alustetaan oletuksena Lontoon kartalla ja Dijkstran
+     * algoritmilla, jos käyttäjä ei itse valitse karttaa tai algoritmia.
+     * 
+     * @throws FileNotFoundException
+     * @throws Exception
+     */
     public Logiikka() throws FileNotFoundException, Exception {
         this.valittuKartta = "kartta1";
         this.kartta = new File("./kartat/London_2_256.map");
@@ -33,7 +37,14 @@ public class Logiikka {
     public void setValittuKartta(String kartta) {
         this.valittuKartta = kartta;
     }
-    
+    /**
+     * Metodi palauttaa matriisimuotoisen kartan käyttäjän valinnan perusteella.
+     * 
+     * @throws FileNotFoundException
+     * @throws Exception
+     * 
+     * @return matriisimuotoinen kartta
+     */
     public char[][] getValittuKartta() throws FileNotFoundException, Exception {
         if (this.valittuKartta.equals("kartta1")) {
             File kartta1 = new File("./kartat/London_2_256.map");

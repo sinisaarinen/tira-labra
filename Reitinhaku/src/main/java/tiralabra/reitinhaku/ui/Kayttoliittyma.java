@@ -5,10 +5,7 @@
  */
 package tiralabra.reitinhaku.ui;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,13 +20,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
-import tiralabra.reitinhaku.kartat.Kartanlukija;
 import tiralabra.reitinhaku.logiikka.Logiikka;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
- * @author saasini
+ * Luokka vastaa käyttöliittymästä ja sen toiminnallisuuksista.
  */
 public class Kayttoliittyma extends Application {
     
@@ -46,7 +41,7 @@ public class Kayttoliittyma extends Application {
         Button nappiKartta3 = new Button("Moskova");
         Button nappiKartta4 = new Button("New York");
         
-        //napit
+        //napit näkymien vaihtoon
         Button menuNappi = new Button("Menu");
         Button vertailuNappi = new Button("Vertailu");
         
@@ -171,7 +166,10 @@ public class Kayttoliittyma extends Application {
         dijkstraNappi.setOnAction((event) -> {
             logiikka.setValittuAlgo("Dijkstra");
         });
-        
+        /*
+        Laskee ja piirtää lyhyimmän reitin käyttäjän valitsemalla algoritmilla sekä
+        näyttää käyttäjälle lasketun reitin pituuden ja laskemiseen kuluneen ajan.
+        */
         laskeReittiNappi.setOnAction((event) -> {
             try {
                 Solmu alku = new Solmu(5, 2);
@@ -211,7 +209,12 @@ public class Kayttoliittyma extends Application {
         window.show();
 
     }
-    
+    /**
+     * Metodi muuttaa kartan matriisimuotoisesta kartasta visuaalisesti kauniimpaan muotoon.
+     * 
+     * @param kartta matriisimuotoinen kartta
+     * @param piirtoalusta piirtoalusta, johon kartta piirretään
+     */
     public void piirraKartta(char[][] kartta, Pane piirtoalusta) {
         for (int x = 0; x < kartta.length; x++) {
             for (int y = 0; y < kartta[0].length; y++) {
@@ -223,7 +226,13 @@ public class Kayttoliittyma extends Application {
             }
         }
     }
-    
+    /**
+     * Metodi piirtää valitun algoritmin löytämän lyhyimmän reitin karttaan.
+     * 
+     * @param kartta matriisimuotoinen kartta
+     * @param piirtoalusta piirtoalusta, johon reitti piirretään
+     * @param reitti algoritmin löytämä lyhin reitti
+     */
     public void piirraReitti(char[][] kartta, Pane piirtoalusta, boolean[][] reitti) {
         for (int x = 0; x < kartta.length; x++) {
             for (int y = 0; y < kartta[0].length; y++) {
@@ -235,7 +244,9 @@ public class Kayttoliittyma extends Application {
             }
         }
     }
-    
+    /**
+     * Metodi alustaa piirtoalustan.
+     */
     public void tyhjennaPiirtoalusta(Pane piirtoalusta) {
         piirtoalusta.getChildren().clear();
     }

@@ -72,6 +72,7 @@ public class Kartanlukija {
     }
      /**
      * Metodi kutsuu luoMatriisi-metodia ja palauttaa luodun matriisin.
+     * 
      * @return luotu matriisi
      * @throws Exception 
      */
