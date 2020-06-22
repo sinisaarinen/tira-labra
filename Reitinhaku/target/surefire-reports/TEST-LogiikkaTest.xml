@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="DijkstraTest" time="0.02" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="LogiikkaTest" time="0.121" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.7+10-post-Ubuntu-2ubuntu218.04"/>
@@ -61,6 +61,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="DijkstraTest" name="kartanUlkopuolistaSolmuaEiLisataKekoon" time="0.013"/>
-  <testcase classname="DijkstraTest" name="lyhinReittiOnOikeanPituinen" time="0.007"/>
+  <testcase classname="LogiikkaTest" name="valitunKartanTaiAlgonVoiVaihtaa" time="0.026"/>
+  <testcase classname="LogiikkaTest" name="oikeaKarttaMuutetaanMatriisiksi" time="0.079"/>
+  <testcase classname="LogiikkaTest" name="alustusToimiiOikein" time="0.016"/>
 </testsuite>

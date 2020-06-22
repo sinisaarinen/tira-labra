@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package tiralabra.reitinhaku.tietorakenteet;
-
 /**
  * 
  * Luokka vastaa yksittäisistä solmuista ja niiden toiminnoista
@@ -17,110 +16,78 @@ public class Solmu implements Comparable&lt;Solmu&gt; {
     private int etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
     private int sijaintiKeossa; //Minimikeon käyttöön
-    private Solmu ylaNaapuri;
-    private Solmu alaNaapuri;
-    private Solmu vasenNaapuri;
-    private Solmu oikeaNaapuri;
     private boolean kasitelty;
     private boolean onkoKeossa;
     
-<span class="fc" id="L27">    public Solmu(int x, int y) {</span>
-<span class="fc" id="L28">        this.x = x;</span>
-<span class="fc" id="L29">        this.y = y;</span>
-<span class="fc" id="L30">        this.lyhinEtaisyysAlusta = -1;</span>
-<span class="fc" id="L31">        this.sijaintiKeossa = -1;</span>
-<span class="fc" id="L32">        this.kasitelty = false;</span>
-<span class="fc" id="L33">        this.onkoKeossa = false;</span>
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L22">    public Solmu(int x, int y) {</span>
+<span class="fc" id="L23">        this.x = x;</span>
+<span class="fc" id="L24">        this.y = y;</span>
+<span class="fc" id="L25">        this.lyhinEtaisyysAlusta = -1;</span>
+<span class="fc" id="L26">        this.sijaintiKeossa = -1;</span>
+<span class="fc" id="L27">        this.kasitelty = false;</span>
+<span class="fc" id="L28">        this.onkoKeossa = false;</span>
+<span class="fc" id="L29">    }</span>
     
-<span class="fc" id="L36">    public Solmu(int x, int y, int lyhinEtaisyysAlusta, Solmu vanhempi) {</span>
-<span class="fc" id="L37">        this.x = x;</span>
-<span class="fc" id="L38">        this.y = y;</span>
-<span class="fc" id="L39">        this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;</span>
-<span class="fc" id="L40">        this.vanhempi = vanhempi;</span>
-<span class="fc" id="L41">        this.sijaintiKeossa = -1;</span>
-<span class="fc" id="L42">        this.kasitelty = false;</span>
-<span class="fc" id="L43">        this.onkoKeossa = false;</span>
-<span class="fc" id="L44">    }</span>
-    /**
-     * Metodi asettaa solmulle naapurit kaikkiin neljään ilmansuuntaan.
-     * 
-     * @param x solmun x-koordinaatti
-     * @param y solmun y-koordinaatti
-     */
-    public void setNaapurit(int x, int y) {
-<span class="nc" id="L52">        this.ylaNaapuri = new Solmu(x, y - 1);</span>
-<span class="nc" id="L53">        this.alaNaapuri = new Solmu(x, y + 1);</span>
-<span class="nc" id="L54">        this.vasenNaapuri = new Solmu((x - 1), y);</span>
-<span class="nc" id="L55">        this.oikeaNaapuri = new Solmu((x + 1), y);</span>
-<span class="nc" id="L56">    }</span>
-    
-    public Solmu getYlaNaapuri() {
-<span class="nc" id="L59">        return this.ylaNaapuri;</span>
-    }
+<span class="fc" id="L31">    public Solmu(int x, int y, int lyhinEtaisyysAlusta, Solmu vanhempi) {</span>
+<span class="fc" id="L32">        this.x = x;</span>
+<span class="fc" id="L33">        this.y = y;</span>
+<span class="fc" id="L34">        this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;</span>
+<span class="fc" id="L35">        this.vanhempi = vanhempi;</span>
+<span class="fc" id="L36">        this.sijaintiKeossa = -1;</span>
+<span class="fc" id="L37">        this.kasitelty = false;</span>
+<span class="fc" id="L38">        this.onkoKeossa = false;</span>
+<span class="fc" id="L39">    }</span>
     
     public void setKasitelty() {
-<span class="fc" id="L63">        this.kasitelty = true;</span>
-<span class="fc" id="L64">    }</span>
+<span class="fc" id="L42">        this.kasitelty = true;</span>
+<span class="fc" id="L43">    }</span>
     
     public boolean getKasitelty() {
-<span class="nc" id="L67">        return this.kasitelty;</span>
+<span class="nc" id="L46">        return this.kasitelty;</span>
     }
     
     public void setKekoon() {
-<span class="fc" id="L71">        this.onkoKeossa = true;</span>
-<span class="fc" id="L72">    }</span>
+<span class="fc" id="L50">        this.onkoKeossa = true;</span>
+<span class="fc" id="L51">    }</span>
     
     public boolean onkoKeossa() {
-<span class="nc" id="L75">        return onkoKeossa;</span>
-    }
-    
-    public Solmu getAlaNaapuri() {
-<span class="nc" id="L79">        return this.alaNaapuri;</span>
-    }
-    
-    public Solmu getVasenNaapuri() {
-<span class="nc" id="L83">        return this.vasenNaapuri;</span>
-    }
-    
-    public Solmu getOikeaNaapuri() {
-<span class="nc" id="L87">        return this.oikeaNaapuri;</span>
+<span class="nc" id="L54">        return onkoKeossa;</span>
     }
 
     public int getX() {
-<span class="fc" id="L91">        return x;</span>
+<span class="fc" id="L58">        return x;</span>
     }
 
     public int getY() {
-<span class="fc" id="L95">        return y;</span>
+<span class="fc" id="L62">        return y;</span>
     }
     
     public int getLyhinEtaisyysAlusta() {
-<span class="fc" id="L99">        return lyhinEtaisyysAlusta;</span>
+<span class="fc" id="L66">        return lyhinEtaisyysAlusta;</span>
     }
     
     public int getEtaisyysArvioLoppuun() {
-<span class="fc" id="L103">        return etaisyysArvioLoppuun;</span>
+<span class="fc" id="L70">        return etaisyysArvioLoppuun;</span>
     }
     
     public void setLyhinEtaisyysAlusta(int etaisyys) {
-<span class="fc" id="L107">        this.lyhinEtaisyysAlusta = etaisyys;</span>
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L74">        this.lyhinEtaisyysAlusta = etaisyys;</span>
+<span class="fc" id="L75">    }</span>
     
     public void setEtaisyysArvioLoppuun(int etaisyys) {
-<span class="fc" id="L111">        this.etaisyysArvioLoppuun = etaisyys;</span>
-<span class="fc" id="L112">    }</span>
+<span class="fc" id="L78">        this.etaisyysArvioLoppuun = etaisyys;</span>
+<span class="fc" id="L79">    }</span>
 
     public Solmu getVanhempi() {
-<span class="fc" id="L115">        return vanhempi;</span>
+<span class="fc" id="L82">        return vanhempi;</span>
     }
     
     public void setSijainti(int sijainti) {
-<span class="fc" id="L119">        this.sijaintiKeossa = sijainti;</span>
-<span class="fc" id="L120">    }</span>
+<span class="fc" id="L86">        this.sijaintiKeossa = sijainti;</span>
+<span class="fc" id="L87">    }</span>
     
     public int getSijainti() {
-<span class="nc" id="L123">        return this.sijaintiKeossa;</span>
+<span class="nc" id="L90">        return this.sijaintiKeossa;</span>
     }
     /**
      * Metodi vertailee kahta solmua.
@@ -129,11 +96,11 @@ public class Solmu implements Comparable&lt;Solmu&gt; {
      */
     @Override
     public boolean equals(Object o) {
-<span class="fc" id="L132">        Solmu vertailtava = (Solmu) o;</span>
-<span class="pc bpc" id="L133" title="1 of 4 branches missed.">        if (x == vertailtava.getX() &amp;&amp; y == vertailtava.getY()) {</span>
-<span class="fc" id="L134">            return true;</span>
+<span class="fc" id="L99">        Solmu vertailtava = (Solmu) o;</span>
+<span class="pc bpc" id="L100" title="1 of 4 branches missed.">        if (x == vertailtava.getX() &amp;&amp; y == vertailtava.getY()) {</span>
+<span class="fc" id="L101">            return true;</span>
         }
-<span class="fc" id="L136">        return false;</span>
+<span class="fc" id="L103">        return false;</span>
     }
      /**
      * Metodi vertailee kahta solmua niiden etäisyyksien perusteella.
@@ -144,19 +111,19 @@ public class Solmu implements Comparable&lt;Solmu&gt; {
      */
     @Override
     public int compareTo(Solmu s) {
-<span class="pc bpc" id="L147" title="1 of 2 branches missed.">        if (s == null) {</span>
-<span class="nc" id="L148">            return 0;</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if (s == null) {</span>
+<span class="nc" id="L115">            return 0;</span>
         }
-<span class="fc" id="L150">        double etaisyys = this.lyhinEtaisyysAlusta + this.etaisyysArvioLoppuun;</span>
-<span class="fc" id="L151">        double vertailtavanEtaisyys = s.getLyhinEtaisyysAlusta() + s.getEtaisyysArvioLoppuun();</span>
+<span class="fc" id="L117">        double etaisyys = this.lyhinEtaisyysAlusta + this.etaisyysArvioLoppuun;</span>
+<span class="fc" id="L118">        double vertailtavanEtaisyys = s.getLyhinEtaisyysAlusta() + s.getEtaisyysArvioLoppuun();</span>
 
-<span class="fc bfc" id="L153" title="All 2 branches covered.">        if (etaisyys &lt; vertailtavanEtaisyys) {</span>
-<span class="fc" id="L154">            return -1;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (etaisyys &lt; vertailtavanEtaisyys) {</span>
+<span class="fc" id="L121">            return -1;</span>
         } 
-<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (etaisyys == vertailtavanEtaisyys) {</span>
-<span class="fc" id="L157">            return 0;            </span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (etaisyys == vertailtavanEtaisyys) {</span>
+<span class="fc" id="L124">            return 0;            </span>
         }
-<span class="fc" id="L159">        return 1;        </span>
+<span class="fc" id="L126">        return 1;        </span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

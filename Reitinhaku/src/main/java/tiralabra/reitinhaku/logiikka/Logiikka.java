@@ -37,6 +37,10 @@ public class Logiikka {
     public void setValittuKartta(String kartta) {
         this.valittuKartta = kartta;
     }
+    
+    public String getValittuKartta() {
+        return this.valittuKartta;
+    }
     /**
      * Metodi palauttaa matriisimuotoisen kartan käyttäjän valinnan perusteella.
      * 
@@ -45,7 +49,7 @@ public class Logiikka {
      * 
      * @return matriisimuotoinen kartta
      */
-    public char[][] getValittuKartta() throws FileNotFoundException, Exception {
+    public char[][] getValittuKarttaMatriisina() throws FileNotFoundException, Exception {
         if (this.valittuKartta.equals("kartta1")) {
             File kartta1 = new File("./kartat/London_2_256.map");
             Kartanlukija kartanlukija = new Kartanlukija(kartta1);

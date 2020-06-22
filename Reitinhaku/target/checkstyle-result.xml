@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.11.2">
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/main/Main.java">
-<error line="21" column="5" severity="error" message="Method length is 21 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/Dijkstra.java">
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/AStar.java">
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/ui/Kayttoliittyma.java">
-<error line="38" column="5" severity="error" message="Method length is 97 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
-<error line="80" column="16" severity="error" message="Name &apos;JPSNappi&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
-<error line="81" column="16" severity="error" message="Name &apos;AStarNappi&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="33" column="5" severity="error" message="Method length is 142 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Solmu.java">
 </file>

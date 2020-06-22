@@ -72,15 +72,16 @@ public class Kartanlukija {
     }
      /**
      * Metodi kutsuu luoMatriisi-metodia ja palauttaa luodun matriisin.
+     * 
      * @return luotu matriisi
      * @throws Exception 
      */
     public char[][] muutaMatriisiksi() throws Exception {
-<span class="fc" id="L79">        char[][] matriisi = luoMatriisi();</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (int i = 0; i &lt; matriisi.length; i++) {</span>
-<span class="fc" id="L81">            matriisi[i] = lukija.nextLine().toCharArray();</span>
+<span class="fc" id="L80">        char[][] matriisi = luoMatriisi();</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (int i = 0; i &lt; matriisi.length; i++) {</span>
+<span class="fc" id="L82">            matriisi[i] = lukija.nextLine().toCharArray();</span>
         }
-<span class="fc" id="L83">        return matriisi;</span>
+<span class="fc" id="L84">        return matriisi;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

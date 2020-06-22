@@ -72,8 +72,8 @@ public class Kayttoliittyma extends Application {
         BorderPane asettelu = new BorderPane();
         Pane piirtoalusta = new Pane();
         Button dijkstraNappi = new Button("Dijsktra");
-        Button JPSNappi = new Button("Jump Point Search");
-        Button AStarNappi = new Button("A-Star");
+        Button jpsNappi = new Button("Jump Point Search");
+        Button aStarNappi = new Button("A-Star");
         Button laskeReittiNappi = new Button("Hae reitti");
         Button pyyhiReititNappi = new Button("Pyyhi reitit");
         
@@ -88,8 +88,8 @@ public class Kayttoliittyma extends Application {
         HBox algoHBox = new HBox();
         algoHBox.setSpacing(20);
         algoHBox.getChildren().add(dijkstraNappi);
-        algoHBox.getChildren().add(JPSNappi);
-        algoHBox.getChildren().add(AStarNappi);
+        algoHBox.getChildren().add(jpsNappi);
+        algoHBox.getChildren().add(aStarNappi);
         
         HBox reititHBox = new HBox();
         reititHBox.setSpacing(20);
@@ -149,7 +149,7 @@ public class Kayttoliittyma extends Application {
                 tyhjennaPiirtoalusta(piirtoalusta);
                 kulunutAika.setText("");
                 reitinPituus.setText("");
-                piirraKartta(this.logiikka.getValittuKartta(), piirtoalusta);
+                piirraKartta(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta);
             } catch (Exception ex) {
             }
             window.setScene(vertailuNakyma);
@@ -159,7 +159,7 @@ public class Kayttoliittyma extends Application {
             window.setScene(menuNakyma);
         });
         
-        AStarNappi.setOnAction((event) -> {
+        aStarNappi.setOnAction((event) -> {
             logiikka.setValittuAlgo("AStar");
         });
         
@@ -175,19 +175,19 @@ public class Kayttoliittyma extends Application {
                 Solmu alku = new Solmu(5, 2);
                 Solmu loppu = new Solmu(200, 200);
                 if (logiikka.getValittuAlgo().equals("Dijkstra")) {
-                    Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKartta());
+                    Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKarttaMatriisina());
                     long aloitusAika = System.currentTimeMillis();
                     int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
                     long lopetusAika = System.currentTimeMillis();
-                    piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, dijkstra.getReitti());
+                    piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, dijkstra.getReitti());
                     reitinPituus.setText("Lyhin reitti Dijkstran algoritmilla oli pituudeltaan " + lyhinReitti);
                     kulunutAika.setText("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
                 } else if (logiikka.getValittuAlgo().equals("AStar")) {
-                    AStar astar = new AStar(this.logiikka.getValittuKartta());
+                    AStar astar = new AStar(this.logiikka.getValittuKarttaMatriisina());
                     long aloitusAika2 = System.currentTimeMillis();
                     int lyhinReitti2 = astar.laskeReitti(alku, loppu);
                     long lopetusAika2 = System.currentTimeMillis();
-                    piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, astar.getReitti());
+                    piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, astar.getReitti());
                     reitinPituus.setText("Lyhin reitti A*-algoritmilla oli pituudeltaan " + lyhinReitti2);
                     kulunutAika.setText("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
                 }
@@ -200,7 +200,7 @@ public class Kayttoliittyma extends Application {
             kulunutAika.setText("");
             reitinPituus.setText("");
             try {
-                piirraKartta(this.logiikka.getValittuKartta(), piirtoalusta);
+                piirraKartta(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta);
             } catch (Exception ex) {
             }
         });
