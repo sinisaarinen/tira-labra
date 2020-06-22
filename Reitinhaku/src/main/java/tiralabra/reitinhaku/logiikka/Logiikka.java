@@ -8,6 +8,7 @@ package tiralabra.reitinhaku.logiikka;
 import java.io.File;
 import java.io.FileNotFoundException;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
+import tiralabra.reitinhaku.tietorakenteet.Solmu;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Logiikka {
         this.valittuAlgo = "Dijkstra";
     }
     
-    public void setValittuKartta(String kartta) throws FileNotFoundException, Exception {
+    public void setValittuKartta(String kartta) {
         this.valittuKartta = kartta;
     }
     
