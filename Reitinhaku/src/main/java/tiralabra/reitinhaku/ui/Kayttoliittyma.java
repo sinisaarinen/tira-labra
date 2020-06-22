@@ -111,7 +111,6 @@ public class Kayttoliittyma extends Application {
             try {
                 this.logiikka.setValittuKartta("kartta1");
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
@@ -119,7 +118,6 @@ public class Kayttoliittyma extends Application {
             try {
                 this.logiikka.setValittuKartta("kartta2");
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
@@ -127,7 +125,6 @@ public class Kayttoliittyma extends Application {
             try {
                 this.logiikka.setValittuKartta("kartta3");
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
@@ -135,15 +132,14 @@ public class Kayttoliittyma extends Application {
             try {
                 this.logiikka.setValittuKartta("kartta4");
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
         vertailuNappi.setOnAction((event) -> {
             try {
+                tyhjennaPiirtoalusta(piirtoalusta);
                 piirraKartta(this.logiikka.getValittuKartta(), piirtoalusta);
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
             window.setScene(vertailuNakyma);
         });
@@ -191,6 +187,10 @@ public class Kayttoliittyma extends Application {
                 }
             }
         }
+    }
+    
+    public void tyhjennaPiirtoalusta(Pane piirtoalusta) {
+        piirtoalusta.getChildren().clear();
     }
 
     public static void main(String[] args) {
