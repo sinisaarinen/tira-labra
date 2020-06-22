@@ -1,15 +1,27 @@
 # Testaus
 
+## JUnit
+
 Testausta on tähän mennessä tehty JUnitin avulla automaattisin testein. Kaikille tähän mennessä toteutetuille luokille on laadittu testit:
 - Algoritmit: luokan AStar testit löytyvät testiluokasta AStarTest ja luokan Dijkstra testit luokasta DijkstraTest
 - Tietorakenteet: Keko-luokan testeistä vastaa testiluokka KekoTest ja Solmu-luokan testeistä SolmuTest
 - Kartanlukija: Kartanlukija-luokkaa testaa KartanlukijaTest
+- Sovelluslogiikka: Logiikka-luokkaa testaa LogiikkaTest
 
-Manuaalista testausta on tähän mennessä tehty vasta hyvin pienimuotoisesti, mutta algoritmit löytävät pituudeltaan samanpituisen reitin, joten voisi olettaa, että ne toimivat oikein. Main-luokasta löytyy manuaalisen testaamisen elementtejä, jotka mittaavat aikaa ja laskevat lyhimmän reitin molempien algoritmien osalta. Tällä hetkellä A*-algoritmi toimii huomattavasti nopeammin kuin Dijsktra.
+Testit voi suorittaa avaamalla projektin Netbeansissa ja painamalla projektin nimen kohdalla oikeaa hiirenpainiketta ja klikkaamalla `Test`. Sama onnistuu myös painamalla Alt + F6. Terminaalissa taas testit voi suorittaa komennolla
+```
+mvn test
+```
+Testien rivi- ja haaraumakattavuutta voi tarkastella Jacocon avulla luomalla testikattavuudesta raportin komennolla
+```
+mvn test jacoco:report
+```
+Kattavuusraporttia voi tämän jälkeen tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
-Ensi viikolla tullaan jatkamaan Dijkstran ja A*-algoritmin suorituskykyä testausta .map-muotoisia karttoja syötteenä käyttäen.
-Tarkoitus on testata suoritusaikoja ja reittien pituuksia, kun algoritmit saavat syötteenä saman kartan ja samat alku- ja loppusolmut. Testejä tullaan suorittamaan useampia eri kartoilla ja eri alku- ja loppusolmuilla.
+Tänne tullaan päivittämään kuva lopullisesta testikattavuudesta, kun sovellus on valmis.
+
+## Suorituskykytestaus
+
+Algoritmien suorituskykyä on mitattu vaihtamalla manuaalisesti reitin lähtö- ja maalipisteitä ja mittaamalla A*- ja Dijkstran algoritmeilla kuluvaa aikaa lyhimmän reitin löytämiseen. Suorituskykytestaukseen on käytetty Javan omaa System.currentTimeMillis()-metodia. A*-algoritmi toimii tällä hetkellä huomattavasti nopeammin kuin Dijkstra. Tarkempia lukuja ja grafiikkaa testauksen tuloksista päivitetään tänne pian.
 
 Testit voidaan toistaa antamalla algoritmeille syötteiksi samat kartat ja samat alku- ja loppusolmut.
-
-Tänne tullaan lisäämään myös empiirisen testauksen tulokset graafisessa muodossa.
