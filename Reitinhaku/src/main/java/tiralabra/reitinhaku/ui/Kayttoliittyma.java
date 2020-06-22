@@ -80,6 +80,7 @@ public class Kayttoliittyma extends Application {
         Button JPSNappi = new Button("Jump Point Search");
         Button AStarNappi = new Button("A-Star");
         Button laskeReittiNappi = new Button("Hae reitti");
+        Button pyyhiReititNappi = new Button("Pyyhi reitit");
         
         Label ohjeAlgo = new Label("Valitse algoritmi ja klikkaa Hae reitti");
         Label reitinPituus = new Label("");
@@ -94,6 +95,12 @@ public class Kayttoliittyma extends Application {
         algoHBox.getChildren().add(dijkstraNappi);
         algoHBox.getChildren().add(JPSNappi);
         algoHBox.getChildren().add(AStarNappi);
+        
+        HBox reititHBox = new HBox();
+        reititHBox.setSpacing(20);
+        reititHBox.getChildren().add(laskeReittiNappi);
+        reititHBox.getChildren().add(pyyhiReititNappi);
+        
         asettelu.setCenter(piirtoalusta);
         asettelu.setTop(menuNappi);
         
@@ -102,7 +109,7 @@ public class Kayttoliittyma extends Application {
         valitseAlgo.getChildren().add(ohjeAlgo);
         valitseAlgo.getChildren().add(algoHBox);
         valitseAlgo.getChildren().add(vertailunTulos);
-        valitseAlgo.getChildren().add(laskeReittiNappi);
+        valitseAlgo.getChildren().add(reititHBox);
         
         asettelu.setBottom(valitseAlgo);
         
@@ -186,6 +193,16 @@ public class Kayttoliittyma extends Application {
                     reitinPituus.setText("Lyhin reitti A*-algoritmilla oli pituudeltaan " + lyhinReitti2);
                     kulunutAika.setText("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
                 }
+            } catch (Exception ex) {
+            }
+        });
+        
+        pyyhiReititNappi.setOnAction((event) -> {
+            tyhjennaPiirtoalusta(piirtoalusta);
+            kulunutAika.setText("");
+            reitinPituus.setText("");
+            try {
+                piirraKartta(this.logiikka.getValittuKartta(), piirtoalusta);
             } catch (Exception ex) {
             }
         });
