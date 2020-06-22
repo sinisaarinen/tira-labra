@@ -7,10 +7,11 @@ package tiralabra.reitinhaku.ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
+import tiralabra.reitinhaku.logiikka.Logiikka;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
 
 /**
@@ -30,14 +32,19 @@ import tiralabra.reitinhaku.tietorakenteet.Solmu;
  * @author saasini
  */
 public class Kayttoliittyma extends Application {
+    
+    private Logiikka logiikka;
 
     @Override
     public void start(Stage window) throws FileNotFoundException, Exception {
         
-        //karttajutut
-        File kartta = new File("./kartat/London_2_256.map");
-        Kartanlukija kartanlukija = new Kartanlukija(kartta);
-        char[][] valittuKartta = kartanlukija.muutaMatriisiksi();
+        this.logiikka = new Logiikka();
+
+        //karttanapit
+        Button nappiKartta1 = new Button("Lontoo");
+        Button nappiKartta2 = new Button("Milano");
+        Button nappiKartta3 = new Button("Moskova");
+        Button nappiKartta4 = new Button("New York");
         
         //napit
         Button menuNappi = new Button("Menu");
@@ -47,6 +54,25 @@ public class Kayttoliittyma extends Application {
         BorderPane menu = new BorderPane();
         menu.setTop(vertailuNappi);
         
+        HBox karttaHBox = new HBox();
+        karttaHBox.setSpacing(20);
+        karttaHBox.getChildren().add(nappiKartta1);
+        karttaHBox.getChildren().add(nappiKartta2);
+        karttaHBox.getChildren().add(nappiKartta3);
+        karttaHBox.getChildren().add(nappiKartta4);
+        
+        Label ohjeKartta = new Label("Valitse kartta");
+        
+        VBox valitseKartta = new VBox();
+        valitseKartta.setSpacing(20);
+        valitseKartta.getChildren().add(ohjeKartta);
+        valitseKartta.getChildren().add(karttaHBox);
+        
+        menu.setBottom(valitseKartta);
+        
+        menu.setPrefSize(400, 200);
+        BorderPane.setMargin(menu, new Insets(100, 10, 10, 10));
+        
         //vertailunäkymä
         BorderPane asettelu = new BorderPane();
         Pane piirtoalusta = new Pane();
@@ -55,7 +81,7 @@ public class Kayttoliittyma extends Application {
         Button AStarNappi = new Button("A-Star");
         Button laskeReittiNappi = new Button("Hae reitti");
         
-        Label ohje = new Label("Valitse algoritmi");
+        Label ohjeAlgo = new Label("Valitse algoritmi");
 
         HBox algoHBox = new HBox();
         algoHBox.setSpacing(20);
@@ -67,7 +93,7 @@ public class Kayttoliittyma extends Application {
         
         VBox valitseAlgo = new VBox();
         valitseAlgo.setSpacing(20);
-        valitseAlgo.getChildren().add(ohje);
+        valitseAlgo.getChildren().add(ohjeAlgo);
         valitseAlgo.getChildren().add(algoHBox);
         valitseAlgo.getChildren().add(laskeReittiNappi);
         
@@ -81,9 +107,45 @@ public class Kayttoliittyma extends Application {
         Scene vertailuNakyma = new Scene(asettelu);
         
         //napit set on action
+        nappiKartta1.setOnAction((event) -> {
+            try {
+                this.logiikka.setValittuKartta("kartta1");
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        nappiKartta2.setOnAction((event) -> {
+            try {
+                this.logiikka.setValittuKartta("kartta2");
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        nappiKartta3.setOnAction((event) -> {
+            try {
+                this.logiikka.setValittuKartta("kartta3");
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        nappiKartta4.setOnAction((event) -> {
+            try {
+                this.logiikka.setValittuKartta("kartta4");
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
         vertailuNappi.setOnAction((event) -> {
+            try {
+                piirraKartta(this.logiikka.getValittuKartta(), piirtoalusta);
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
             window.setScene(vertailuNakyma);
-            piirraKartta(valittuKartta, piirtoalusta);
         });
 
         menuNappi.setOnAction((event) -> {
@@ -91,11 +153,15 @@ public class Kayttoliittyma extends Application {
         });
         
         laskeReittiNappi.setOnAction((event) -> {
-            Solmu alku = new Solmu(5, 2);
-            Solmu loppu = new Solmu(200, 200);
-            Dijkstra dijkstra = new Dijkstra(valittuKartta);
-            int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
-            piirraReitti(valittuKartta, piirtoalusta, dijkstra.getReitti());
+            try {
+                Solmu alku = new Solmu(5, 2);
+                Solmu loppu = new Solmu(200, 200);
+                Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKartta());
+                int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+                piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, dijkstra.getReitti());
+            } catch (Exception ex) {
+                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         window.setScene(menuNakyma);
@@ -127,8 +193,6 @@ public class Kayttoliittyma extends Application {
         }
     }
 
-    //Käytä ihan perus Canvas, jolle fillRectilla värillinen ruudukko kuvaamaan estettä, väylää, alkupistettä, 
-    //loppupistettä ja reittiä, 2x2 pikselin ruutuja ehkä. Ohja-kurssilla olet varmaan piirrellyt JavaFX:llä.
     public static void main(String[] args) {
         launch(Kayttoliittyma.class);
     }

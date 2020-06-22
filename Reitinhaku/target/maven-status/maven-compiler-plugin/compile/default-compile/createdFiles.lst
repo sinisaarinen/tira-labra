@@ -1,8 +1,8 @@
 tiralabra/reitinhaku/tietorakenteet/Solmu.class
 tiralabra/reitinhaku/main/Main.class
 tiralabra/reitinhaku/algoritmit/Dijkstra.class
-tiralabra/reitinhaku/ui/Piirtoalusta.class
 tiralabra/reitinhaku/algoritmit/AStar.class
 tiralabra/reitinhaku/kartat/Kartanlukija.class
 tiralabra/reitinhaku/ui/Kayttoliittyma.class
+tiralabra/reitinhaku/logiikka/Logiikka.class
 tiralabra/reitinhaku/tietorakenteet/Keko.class
