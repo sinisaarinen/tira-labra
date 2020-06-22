@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Reitinhaku,tiralabra.reitinhaku.logiikka,Logiikka,110,0,8,0,25,0,7,0,3,0
+Reitinhaku,tiralabra.reitinhaku.main,Main,109,0,0,0,21,0,2,0,2,0
+Reitinhaku,tiralabra.reitinhaku.tietorakenteet,Keko,32,234,8,26,7,48,9,22,2,12
+Reitinhaku,tiralabra.reitinhaku.tietorakenteet,Solmu,60,127,2,8,13,44,10,17,8,14
+Reitinhaku,tiralabra.reitinhaku.algoritmit,AStar,2,284,5,19,1,48,5,14,0,7
+Reitinhaku,tiralabra.reitinhaku.algoritmit,Dijkstra,5,275,4,20,2,43,5,14,1,6
+Reitinhaku,tiralabra.reitinhaku.kartat,Kartanlukija,6,79,0,4,2,23,0,7,0,5

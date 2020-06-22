@@ -19,12 +19,14 @@ public class Logiikka {
     private File kartta;
     private Kartanlukija kartanlukija;
     private char[][] matriisi;
+    private String valittuAlgo;
     
     public Logiikka() throws FileNotFoundException, Exception {
         this.valittuKartta = "kartta1";
         this.kartta = new File("./kartat/London_2_256.map");
         this.kartanlukija = new Kartanlukija(kartta);
         this.matriisi = kartanlukija.muutaMatriisiksi();
+        this.valittuAlgo = "Dijkstra";
     }
     
     public void setValittuKartta(String kartta) throws FileNotFoundException, Exception {
@@ -50,5 +52,13 @@ public class Logiikka {
             this.matriisi = kartanlukija.muutaMatriisiksi();
         }
         return this.matriisi;
+    }
+    
+    public void setValittuAlgo(String algoritmi) {
+        this.valittuAlgo = algoritmi;
+    }
+    
+    public String getValittuAlgo() {
+        return this.valittuAlgo;
     }
 }

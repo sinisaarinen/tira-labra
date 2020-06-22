@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Logiikka.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reitinhaku</a> &gt; <a href="index.source.html" class="el_package">tiralabra.reitinhaku.logiikka</a> &gt; <span class="el_source">Logiikka.java</span></div><h1>Logiikka.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tiralabra.reitinhaku.logiikka;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import tiralabra.reitinhaku.kartat.Kartanlukija;
+
+/**
+ *
+ * @author saasini
+ */
+public class Logiikka {
+    
+    private String valittuKartta;
+    private File kartta;
+    private Kartanlukija kartanlukija;
+    private char[][] matriisi;
+    
+<span class="nc" id="L23">    public Logiikka() throws FileNotFoundException, Exception {</span>
+<span class="nc" id="L24">        this.valittuKartta = &quot;kartta1&quot;;</span>
+<span class="nc" id="L25">        this.kartta = new File(&quot;./kartat/London_2_256.map&quot;);</span>
+<span class="nc" id="L26">        this.kartanlukija = new Kartanlukija(kartta);</span>
+<span class="nc" id="L27">        this.matriisi = kartanlukija.muutaMatriisiksi();</span>
+<span class="nc" id="L28">    }</span>
+    
+    public void setValittuKartta(String kartta) throws FileNotFoundException, Exception {
+<span class="nc" id="L31">        this.valittuKartta = kartta;</span>
+<span class="nc" id="L32">    }</span>
+    
+    public char[][] getValittuKartta() throws FileNotFoundException, Exception {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (this.valittuKartta.equals(&quot;kartta1&quot;)) {</span>
+<span class="nc" id="L36">            File kartta1 = new File(&quot;./kartat/London_2_256.map&quot;);</span>
+<span class="nc" id="L37">            Kartanlukija kartanlukija = new Kartanlukija(kartta1);</span>
+<span class="nc" id="L38">            this.matriisi = kartanlukija.muutaMatriisiksi();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        } else if (this.valittuKartta.equals(&quot;kartta2&quot;)) {</span>
+<span class="nc" id="L40">            File kartta2 = new File(&quot;./kartat/Milan_2_256.map&quot;);</span>
+<span class="nc" id="L41">            Kartanlukija kartanlukija = new Kartanlukija(kartta2);</span>
+<span class="nc" id="L42">            this.matriisi = kartanlukija.muutaMatriisiksi();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (this.valittuKartta.equals(&quot;kartta3&quot;)) {</span>
+<span class="nc" id="L44">            File kartta3 = new File(&quot;./kartat/Moscow_1_256.map&quot;);</span>
+<span class="nc" id="L45">            Kartanlukija kartanlukija = new Kartanlukija(kartta3);</span>
+<span class="nc" id="L46">            this.matriisi = kartanlukija.muutaMatriisiksi();</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        } else if (this.valittuKartta.equals(&quot;kartta4&quot;)) {</span>
+<span class="nc" id="L48">            File kartta4 = new File(&quot;./kartat/NewYork_1_256.map&quot;);</span>
+<span class="nc" id="L49">            Kartanlukija kartanlukija = new Kartanlukija(kartta4);</span>
+<span class="nc" id="L50">            this.matriisi = kartanlukija.muutaMatriisiksi();</span>
+        }
+<span class="nc" id="L52">        return this.matriisi;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

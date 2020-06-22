@@ -19,6 +19,7 @@ public class AStar {
     private Solmu[] polku;
     private int lyhinReitti;
     private boolean[][] kasitelty;
+    private boolean[][] reitti;
     private int[][] etaisyysAlusta;
 
     public AStar(char[][] kartta) {
@@ -28,10 +29,12 @@ public class AStar {
         this.lyhinReitti = 0;
         this.etaisyysAlusta = new int[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
+        this.reitti = new boolean[kartta.length][kartta[0].length];
         for (int i = 0; i < kartta.length; i++) {
             for (int j = 0; j < kartta[0].length; j++) {
                 kasitelty[i][j] = false;
                 etaisyysAlusta[i][j] = Integer.MAX_VALUE;
+                reitti[i][j] = false;
             }
         }
     }
@@ -88,6 +91,7 @@ public class AStar {
      * @return lyhimmän reitin pituus
      */
     public int reitinPituus(Solmu solmu) {
+        this.reitti[solmu.getX()][solmu.getY()] = true;
         if (solmu.getVanhempi() != null) {
             lyhinReitti++;
             reitinPituus(solmu.getVanhempi());
@@ -139,5 +143,9 @@ public class AStar {
     
     public Keko getKeko() {
         return this.minimiKeko;
+    }
+    
+    public boolean[][] getReitti() {
+        return this.reitti;
     }
 }

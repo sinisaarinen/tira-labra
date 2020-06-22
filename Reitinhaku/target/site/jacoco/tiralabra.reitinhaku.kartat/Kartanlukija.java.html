@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Kartanlukija.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reitinhaku</a> &gt; <a href="index.source.html" class="el_package">tiralabra.reitinhaku.kartat</a> &gt; <span class="el_source">Kartanlukija.java</span></div><h1>Kartanlukija.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tiralabra.reitinhaku.kartat;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+/**
+ *
+ * Luokka vastaa .map-tyyppisten karttatiedostojen lukemisesta ja niiden
+ * muuntamisesta matriisimuotoon.
+ */
+public class Kartanlukija {
+    
+    private File kartta;
+    private Scanner lukija;
+     /**
+     * Konstruktori saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
+     * @param tiedosto
+     * @throws FileNotFoundException 
+     */
+<span class="fc" id="L25">    public Kartanlukija(File tiedosto) throws FileNotFoundException {</span>
+<span class="fc" id="L26">        this.kartta = tiedosto;        </span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (!lueKartta()) {</span>
+<span class="fc" id="L28">            throw new FileNotFoundException();</span>
+        }        
+<span class="fc" id="L30">    }</span>
+    /**
+     * Metodi saa parametrinaan tiedoston ja kutsuu lueKartta-metodia.
+     * @param tiedosto
+     * @return true jos lueKartta-metodi palauttaa true, muuten false
+     */
+    public boolean lataaKartta(File tiedosto) {
+<span class="fc" id="L37">        kartta = tiedosto;</span>
+<span class="fc" id="L38">        return lueKartta();</span>
+    }
+    /**
+     * Metodi lukee .map-tiedoston.
+     * @return true jos tiedosto löytyy, muuten false
+     */
+    public boolean lueKartta() {
+        try {            
+<span class="fc" id="L46">            lukija = new Scanner(kartta);</span>
+<span class="fc" id="L47">            return true;</span>
+<span class="fc" id="L48">        } catch (FileNotFoundException poikkeus) {</span>
+<span class="fc" id="L49">            return false;</span>
+        }
+    }
+     /**
+     * Metodi luo matriisin .map-muotoisesta tiedostosta.
+     * @return matriisi, jos tiedoston luku onnistuu.
+     * @throws Exception 
+     */
+    public char[][] luoMatriisi() throws Exception {
+        String korkeus;
+        String leveys;
+        try {
+<span class="fc" id="L61">            lukija.nextLine();</span>
+<span class="fc" id="L62">            korkeus = lukija.nextLine();</span>
+<span class="fc" id="L63">            leveys = lukija.nextLine();            </span>
+<span class="fc" id="L64">            char[][] matriisi = </span>
+<span class="fc" id="L65">                new char[Integer.parseInt(korkeus.substring(7))]</span>
+<span class="fc" id="L66">                        [Integer.parseInt(leveys.substring(6))];</span>
+<span class="fc" id="L67">            lukija.nextLine();                      </span>
+<span class="fc" id="L68">            return matriisi;</span>
+<span class="nc" id="L69">        } catch (Exception poikkeus) {</span>
+<span class="nc" id="L70">            throw new Exception(&quot;Valittu tiedosto ei kelpaa.&quot;);            </span>
+        }        
+    }
+     /**
+     * Metodi kutsuu luoMatriisi-metodia ja palauttaa luodun matriisin.
+     * @return luotu matriisi
+     * @throws Exception 
+     */
+    public char[][] muutaMatriisiksi() throws Exception {
+<span class="fc" id="L79">        char[][] matriisi = luoMatriisi();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (int i = 0; i &lt; matriisi.length; i++) {</span>
+<span class="fc" id="L81">            matriisi[i] = lukija.nextLine().toCharArray();</span>
+        }
+<span class="fc" id="L83">        return matriisi;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

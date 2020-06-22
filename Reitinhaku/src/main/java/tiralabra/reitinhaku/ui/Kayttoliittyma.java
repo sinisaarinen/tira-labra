@@ -152,11 +152,16 @@ public class Kayttoliittyma extends Application {
             try {
                 Solmu alku = new Solmu(5, 2);
                 Solmu loppu = new Solmu(200, 200);
-                Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKartta());
-                int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
-                piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, dijkstra.getReitti());
+                if (logiikka.getValittuAlgo().equals("Dijkstra")) {
+                    Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKartta());
+                    int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+                    piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, dijkstra.getReitti());
+                } else if (logiikka.getValittuAlgo().equals("AStar")) {
+                    AStar astar = new AStar(this.logiikka.getValittuKartta());
+                    int lyhinReitti = astar.laskeReitti(alku, loppu);
+                    piirraReitti(this.logiikka.getValittuKartta(), piirtoalusta, astar.getReitti());
+                }
             } catch (Exception ex) {
-                Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
