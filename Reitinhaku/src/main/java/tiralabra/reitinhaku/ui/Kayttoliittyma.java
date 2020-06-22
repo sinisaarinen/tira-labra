@@ -61,7 +61,7 @@ public class Kayttoliittyma extends Application {
         karttaHBox.getChildren().add(nappiKartta3);
         karttaHBox.getChildren().add(nappiKartta4);
         
-        Label ohjeKartta = new Label("Valitse kartta");
+        Label ohjeKartta = new Label("Valitse kartta ja klikkaa Vertailu");
         
         VBox valitseKartta = new VBox();
         valitseKartta.setSpacing(20);
@@ -81,7 +81,7 @@ public class Kayttoliittyma extends Application {
         Button AStarNappi = new Button("A-Star");
         Button laskeReittiNappi = new Button("Hae reitti");
         
-        Label ohjeAlgo = new Label("Valitse algoritmi");
+        Label ohjeAlgo = new Label("Valitse algoritmi ja klikkaa Hae reitti");
         Label reitinPituus = new Label("");
         Label kulunutAika = new Label("");
         
