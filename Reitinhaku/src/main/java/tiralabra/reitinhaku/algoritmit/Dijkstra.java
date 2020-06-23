@@ -19,11 +19,13 @@ public class Dijkstra {
     private int[][] etaisyys;
     private boolean[][] reitti;
     private boolean[][] kasitelty;
+    private int kasiteltyja;
     
     public Dijkstra(char[][] kartta) {
         this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
         this.lyhinReitti = 0;
+        this.kasiteltyja = 0;
         this.etaisyys = new int[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
         this.reitti = new boolean[kartta.length][kartta[0].length];
@@ -53,6 +55,7 @@ public class Dijkstra {
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
             kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
+            kasiteltyja++;
             kasiteltava.setKasitelty();
 
             if (kasiteltava.equals(loppu)) {
@@ -124,5 +127,9 @@ public class Dijkstra {
     
     public boolean[][] getReitti() {
         return this.reitti;
+    }
+    
+    public int getKasitellyt() {
+        return this.kasiteltyja;
     }
 }
