@@ -73,7 +73,6 @@ public class Kayttoliittyma extends Application {
         BorderPane asettelu = new BorderPane();
         Pane piirtoalusta = new Pane();
         Button dijkstraNappi = new Button("Dijsktra");
-        Button jpsNappi = new Button("Jump Point Search");
         Button aStarNappi = new Button("A-Star");
         Button laskeReittiNappi = new Button("Hae reitti");
         Button pyyhiReititNappi = new Button("Pyyhi reitit");
@@ -89,7 +88,6 @@ public class Kayttoliittyma extends Application {
         HBox algoHBox = new HBox();
         algoHBox.setSpacing(20);
         algoHBox.getChildren().add(dijkstraNappi);
-        algoHBox.getChildren().add(jpsNappi);
         algoHBox.getChildren().add(aStarNappi);
         
         Label alkuSolmu = new Label("Alkusolmun x ja y");
