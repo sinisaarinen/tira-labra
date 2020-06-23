@@ -214,11 +214,11 @@ public class Kayttoliittyma extends Application {
                         kulunutAika.setText("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
                     }
                 } else {
-                    reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa.");
+                    reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa tai reittiä ei löydy.");
                     kulunutAika.setText("");
                 }
             } catch (Exception ex) {
-                reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa.");
+                reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa tai reittiä ei löydy.");
                 kulunutAika.setText("");
             }
         });
