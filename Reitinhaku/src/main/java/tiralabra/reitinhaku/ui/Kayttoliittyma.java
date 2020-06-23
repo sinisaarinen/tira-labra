@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -77,7 +78,7 @@ public class Kayttoliittyma extends Application {
         Button laskeReittiNappi = new Button("Hae reitti");
         Button pyyhiReititNappi = new Button("Pyyhi reitit");
         
-        Label ohjeAlgo = new Label("Valitse algoritmi ja klikkaa Hae reitti");
+        Label ohjeAlgo = new Label("Valitse algoritmi, syötä alku- ja loppusolmun x- ja y-koordinaatit (0-256) ja klikkaa Hae reitti");
         Label reitinPituus = new Label("");
         Label kulunutAika = new Label("");
         
@@ -91,25 +92,45 @@ public class Kayttoliittyma extends Application {
         algoHBox.getChildren().add(jpsNappi);
         algoHBox.getChildren().add(aStarNappi);
         
+        Label alkuSolmu = new Label("Alkusolmun x ja y");
+        TextField alkuX = new TextField();
+        alkuX.setPrefWidth(50);
+        TextField alkuY = new TextField();
+        alkuY.setPrefWidth(50);
+        Label loppuSolmu = new Label("Loppusolmun x ja y");
+        TextField loppuX = new TextField();
+        loppuX.setPrefWidth(50);
+        TextField loppuY = new TextField();
+        loppuY.setPrefWidth(50);
+        
+        HBox solmuHBox = new HBox();
+        solmuHBox.setSpacing(10);
+        solmuHBox.getChildren().add(alkuSolmu);
+        solmuHBox.getChildren().add(alkuX);
+        solmuHBox.getChildren().add(alkuY);
+        solmuHBox.getChildren().add(loppuSolmu);
+        solmuHBox.getChildren().add(loppuX);
+        solmuHBox.getChildren().add(loppuY);
+        
         HBox reititHBox = new HBox();
         reititHBox.setSpacing(20);
         reititHBox.getChildren().add(laskeReittiNappi);
         reititHBox.getChildren().add(pyyhiReititNappi);
-        
-        asettelu.setCenter(piirtoalusta);
-        asettelu.setTop(menuNappi);
+        reititHBox.getChildren().add(menuNappi);
         
         VBox valitseAlgo = new VBox();
         valitseAlgo.setSpacing(20);
         valitseAlgo.getChildren().add(ohjeAlgo);
         valitseAlgo.getChildren().add(algoHBox);
+        valitseAlgo.getChildren().add(solmuHBox);
         valitseAlgo.getChildren().add(vertailunTulos);
         valitseAlgo.getChildren().add(reititHBox);
         
-        asettelu.setBottom(valitseAlgo);
+        asettelu.setTop(piirtoalusta);
+        asettelu.setCenter(valitseAlgo);
         
-        asettelu.setPrefSize(1000, 1000);
-        BorderPane.setMargin(valitseAlgo, new Insets(100, 10, 10, 10));
+        asettelu.setPrefSize(770, 1000);
+        BorderPane.setMargin(valitseAlgo, new Insets(10, 10, 10, 10));
         
         //näkymät
         Scene menuNakyma = new Scene(menu);
@@ -172,26 +193,33 @@ public class Kayttoliittyma extends Application {
         */
         laskeReittiNappi.setOnAction((event) -> {
             try {
-                Solmu alku = new Solmu(5, 2);
-                Solmu loppu = new Solmu(200, 200);
-                if (logiikka.getValittuAlgo().equals("Dijkstra")) {
-                    Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKarttaMatriisina());
-                    long aloitusAika = System.currentTimeMillis();
-                    int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
-                    long lopetusAika = System.currentTimeMillis();
-                    piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, dijkstra.getReitti());
-                    reitinPituus.setText("Lyhin reitti Dijkstran algoritmilla oli pituudeltaan " + lyhinReitti);
-                    kulunutAika.setText("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
-                } else if (logiikka.getValittuAlgo().equals("AStar")) {
-                    AStar astar = new AStar(this.logiikka.getValittuKarttaMatriisina());
-                    long aloitusAika2 = System.currentTimeMillis();
-                    int lyhinReitti2 = astar.laskeReitti(alku, loppu);
-                    long lopetusAika2 = System.currentTimeMillis();
-                    piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, astar.getReitti());
-                    reitinPituus.setText("Lyhin reitti A*-algoritmilla oli pituudeltaan " + lyhinReitti2);
-                    kulunutAika.setText("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
+                if (logiikka.solmutOK(alkuX.getText(), alkuY.getText(), loppuX.getText(), loppuY.getText())) {
+                    Solmu alku = new Solmu(Integer.valueOf(alkuX.getText()), Integer.valueOf(alkuY.getText()));
+                    Solmu loppu = new Solmu(Integer.valueOf(loppuX.getText()), Integer.valueOf(loppuY.getText()));
+                    if (logiikka.getValittuAlgo().equals("Dijkstra")) {
+                        Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKarttaMatriisina());
+                        long aloitusAika = System.currentTimeMillis();
+                        int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+                        long lopetusAika = System.currentTimeMillis();
+                        piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, dijkstra.getReitti());
+                        reitinPituus.setText("Lyhin reitti Dijkstran algoritmilla oli pituudeltaan " + lyhinReitti);
+                        kulunutAika.setText("Suoritusaika Dijkstran algoritmille oli " + (lopetusAika - aloitusAika) + "ms.");
+                    } else if (logiikka.getValittuAlgo().equals("AStar")) {
+                        AStar astar = new AStar(this.logiikka.getValittuKarttaMatriisina());
+                        long aloitusAika2 = System.currentTimeMillis();
+                        int lyhinReitti2 = astar.laskeReitti(alku, loppu);
+                        long lopetusAika2 = System.currentTimeMillis();
+                        piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, astar.getReitti());
+                        reitinPituus.setText("Lyhin reitti A*-algoritmilla oli pituudeltaan " + lyhinReitti2);
+                        kulunutAika.setText("Suoritusaika A*-algoritmille oli " + (lopetusAika2 - aloitusAika2) + "ms.");
+                    }
+                } else {
+                    reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa.");
+                    kulunutAika.setText("");
                 }
             } catch (Exception ex) {
+                reitinPituus.setText("Syöttämäsi koordinaatit eivät kelpaa.");
+                kulunutAika.setText("");
             }
         });
         

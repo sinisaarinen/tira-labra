@@ -77,4 +77,18 @@ public class Logiikka {
     public String getValittuAlgo() {
         return this.valittuAlgo;
     }
+    
+    public boolean solmutOK(String alkuX, String alkuY, String loppuX, String loppuY) {
+        int[] luvut = new int[4];
+        luvut[0] = Integer.valueOf(alkuX);
+        luvut[1] = Integer.valueOf(alkuY);
+        luvut[2] = Integer.valueOf(loppuX);
+        luvut[3] = Integer.valueOf(loppuY);
+        for (int i = 0; i < luvut.length; i++) {
+            if (i >= 0 && i < matriisi.length && matriisi[luvut[0]][luvut[1]] == '.' && matriisi[luvut[2]][luvut[3]] == '.') {
+                return true;
+            }
+        }
+        return false;
+    }
 }
