@@ -12,8 +12,8 @@ public class Solmu implements Comparable<Solmu> {
     
     private int x;
     private int y;
-    private int lyhinEtaisyysAlusta; //A*-algoritmille ja Dijkstralle
-    private int etaisyysArvioLoppuun; //A*-algoritmille
+    private double lyhinEtaisyysAlusta; //A*-algoritmille ja Dijkstralle
+    private double etaisyysArvioLoppuun; //A*-algoritmille
     Solmu vanhempi;
     private int sijaintiKeossa; //Minimikeon käyttöön
     private boolean kasitelty;
@@ -28,7 +28,7 @@ public class Solmu implements Comparable<Solmu> {
         this.onkoKeossa = false;
     }
     
-    public Solmu(int x, int y, int lyhinEtaisyysAlusta, Solmu vanhempi) {
+    public Solmu(int x, int y, double lyhinEtaisyysAlusta, Solmu vanhempi) {
         this.x = x;
         this.y = y;
         this.lyhinEtaisyysAlusta = lyhinEtaisyysAlusta;
@@ -62,19 +62,19 @@ public class Solmu implements Comparable<Solmu> {
         return y;
     }
     
-    public int getLyhinEtaisyysAlusta() {
+    public double getLyhinEtaisyysAlusta() {
         return lyhinEtaisyysAlusta;
     }
     
-    public int getEtaisyysArvioLoppuun() {
+    public double getEtaisyysArvioLoppuun() {
         return etaisyysArvioLoppuun;
     }
     
-    public void setLyhinEtaisyysAlusta(int etaisyys) {
+    public void setLyhinEtaisyysAlusta(double etaisyys) {
         this.lyhinEtaisyysAlusta = etaisyys;
     }
     
-    public void setEtaisyysArvioLoppuun(int etaisyys) {
+    public void setEtaisyysArvioLoppuun(double etaisyys) {
         this.etaisyysArvioLoppuun = etaisyys;
     }
 

@@ -77,7 +77,7 @@ public class Kayttoliittyma extends Application {
         Button laskeReittiNappi = new Button("Hae reitti");
         Button pyyhiReititNappi = new Button("Pyyhi reitit");
         
-        Label ohjeAlgo = new Label("Valitse algoritmi, syötä alku- ja loppusolmun x- ja y-koordinaatit (1-256) ja klikkaa Hae reitti. Varo esteitä!");
+        Label ohjeAlgo = new Label("Valitse algoritmi, syötä alku- ja loppusolmun x- ja y-koordinaatit (0-256) ja klikkaa Hae reitti. Varo esteitä!");
         Label reitinPituus = new Label("");
         Label kulunutAika = new Label("");
         
@@ -197,7 +197,7 @@ public class Kayttoliittyma extends Application {
                     if (logiikka.getValittuAlgo().equals("Dijkstra")) {
                         Dijkstra dijkstra = new Dijkstra(this.logiikka.getValittuKarttaMatriisina());
                         long aloitusAika = System.currentTimeMillis();
-                        int lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
+                        double lyhinReitti = dijkstra.laskeReitinPituus(alku, loppu);
                         long lopetusAika = System.currentTimeMillis();
                         int kasiteltyja = dijkstra.getKasitellyt();
                         piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, dijkstra.getReitti());
@@ -206,7 +206,7 @@ public class Kayttoliittyma extends Application {
                     } else if (logiikka.getValittuAlgo().equals("AStar")) {
                         AStar astar = new AStar(this.logiikka.getValittuKarttaMatriisina());
                         long aloitusAika2 = System.currentTimeMillis();
-                        int lyhinReitti2 = astar.laskeReitti(alku, loppu);
+                        double lyhinReitti2 = astar.laskeReitti(alku, loppu);
                         long lopetusAika2 = System.currentTimeMillis();
                         int kasiteltyja2 = astar.getKasitellyt();
                         piirraReitti(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta, astar.getReitti());
@@ -268,7 +268,7 @@ public class Kayttoliittyma extends Application {
                     Rectangle reittiRuutu = new Rectangle(x * 3, y * 3 + 5, 3, 3);
                     reittiRuutu.setFill(Color.RED);
                     piirtoalusta.getChildren().add(reittiRuutu);
-                }
+               }
             }
         }
     }

@@ -5,6 +5,7 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
+import static java.lang.Math.sqrt;
 import tiralabra.reitinhaku.tietorakenteet.Keko;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
 
@@ -21,7 +22,7 @@ public class AStar {
     private int kasiteltyja;
     private boolean[][] kasitelty;
     private boolean[][] reitti;
-    private int[][] etaisyysAlusta;
+    private double[][] etaisyysAlusta;
 
     public AStar(char[][] kartta) {
         this.kartta = kartta;
@@ -29,7 +30,7 @@ public class AStar {
         this.polku = new Solmu[kartta.length * kartta[0].length];
         this.lyhinReitti = 0;
         this.kasiteltyja = 0;
-        this.etaisyysAlusta = new int[kartta.length][kartta[0].length];
+        this.etaisyysAlusta = new double[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
         this.reitti = new boolean[kartta.length][kartta[0].length];
         for (int i = 0; i < kartta.length; i++) {
@@ -49,10 +50,10 @@ public class AStar {
      * 
      * @return arvioitu etäisyys x- ja y-koordinaateista loppusolmuun
      */
-    public int arvioiEtaisyysLoppuun(int x, int y, Solmu loppu) {
-        int etaisyysLoppuun
-                = (Math.abs(loppu.getX() - x)
-                + Math.abs(loppu.getY() - y));
+    public double arvioiEtaisyysLoppuun(int x, int y, Solmu loppu) {
+        double etaisyysLoppuun
+                = Math.sqrt((Math.pow(loppu.getX() - x, 2)
+                + Math.pow(loppu.getY() - y, 2)));
         return etaisyysLoppuun;
     }
     /**
@@ -66,7 +67,7 @@ public class AStar {
      * 
      * @return reitin pituus, jos reitti löytyy, muuten -1
      */
-    public int laskeReitti(Solmu alku, Solmu loppu) {
+    public double laskeReitti(Solmu alku, Solmu loppu) {
         alku.setLyhinEtaisyysAlusta(0);
         etaisyysAlusta[alku.getX()][alku.getY()] = 0;
         minimiKeko.lisaaSolmu(alku);
@@ -79,7 +80,8 @@ public class AStar {
             kasiteltyja++;
 
             if (kasiteltava.equals(loppu)) {
-                return reitinPituus(kasiteltava);
+                reitinPituus(kasiteltava);
+                return this.etaisyysAlusta[kasiteltava.getX()][kasiteltava.getY()];
             }
             etsi(kasiteltava, loppu);
         }
@@ -93,13 +95,11 @@ public class AStar {
      * 
      * @return lyhimmän reitin pituus
      */
-    public int reitinPituus(Solmu solmu) {
+    public void reitinPituus(Solmu solmu) {
         this.reitti[solmu.getX()][solmu.getY()] = true;
         if (solmu.getVanhempi() != null) {
-            lyhinReitti++;
             reitinPituus(solmu.getVanhempi());
         }
-        return lyhinReitti;
     }
     /**
      * Metodi etsii käsiteltävän solmun ylä- ja alapuolilla sekä oikealla ja vasemmalla
@@ -111,13 +111,21 @@ public class AStar {
      */
     public void etsi(Solmu kasiteltava, Solmu loppu) {
         //askel ylös
-        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY(), kasiteltava, loppu, false);
         //askel alas
-        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY(), kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY(), kasiteltava, loppu, false);
         //askel vasemmalle
-        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() - 1, kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() - 1, kasiteltava, loppu, false);
         //askel oikealle
-        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() + 1, kasiteltava, loppu);
+        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() + 1, kasiteltava, loppu, false);
+        //askel koilliseen
+        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY() + 1, kasiteltava, loppu, true);
+        //askel kaakkoon
+        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY() - 1, kasiteltava, loppu, true);
+        //askel lounaaseen
+        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY() - 1, kasiteltava, loppu, true);
+        //askel luoteeseen
+        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY() + 1, kasiteltava, loppu, true);
     }
     /**
      * Metodi tarkistaa ensin, että solmu sijaitsee kartan rajojen sisällä ja siihen
@@ -130,13 +138,17 @@ public class AStar {
      * @param edeltaja solmun edeltäjä
      * @param loppu solmu, johon reitti päättyy
      */
-    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu) {
+    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu, boolean vinottain) {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {
-            if (edeltaja.getLyhinEtaisyysAlusta() + 1 < etaisyysAlusta[x][y]) {
-                int etaisyysAlustaInt = edeltaja.getLyhinEtaisyysAlusta() + 1;
-                etaisyysAlusta[x][y] = etaisyysAlustaInt;
-                int etaisyysLopusta = arvioiEtaisyysLoppuun(x, y, loppu);
-                Solmu solmu = new Solmu(x, y, etaisyysAlustaInt, edeltaja);
+            double siirtyma = 1.00;
+            if (vinottain == true) {
+               siirtyma = Math.sqrt(2);
+            }
+            if (edeltaja.getLyhinEtaisyysAlusta() + siirtyma < etaisyysAlusta[x][y]) {
+                double etaisyysAlustaDouble = edeltaja.getLyhinEtaisyysAlusta() + siirtyma;
+                etaisyysAlusta[x][y] = etaisyysAlustaDouble;
+                double etaisyysLopusta = arvioiEtaisyysLoppuun(x, y, loppu);
+                Solmu solmu = new Solmu(x, y, etaisyysAlustaDouble, edeltaja);
                 solmu.setEtaisyysArvioLoppuun(etaisyysLopusta);
                 minimiKeko.lisaaSolmu(solmu);
                 solmu.setKekoon();
@@ -154,5 +166,9 @@ public class AStar {
     
     public int getKasitellyt() {
         return this.kasiteltyja;
+    }
+    
+    public boolean[][] getKasitellytTaulukkona() {
+        return this.kasitelty;
     }
 }
