@@ -1,6 +1,6 @@
 # Reitinhakusovellus
 
-Tämä sovellus tullaan toteuttamaan osana Helsingin yliopiston alkukesän 2020 Tietorakenteiden ja algoritmien harjoitustyökurssia. Harjoitustyön aihe on reitinhaku ja se toteutetaan Java-ohjelmointikielellä.
+Tämä sovellus toteutettiin osana Helsingin yliopiston alkukesän 2020 Tietorakenteiden ja algoritmien harjoitustyökurssia. Harjoitustyön aihe on reitinhaku ja se toteutettiin Java-ohjelmointikielellä.
 
 ## Dokumentaatio
 
