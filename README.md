@@ -26,6 +26,10 @@ Tämä sovellus toteutettiin osana Helsingin yliopiston alkukesän 2020 Tietorak
 
 [Viikko 6](dokumentaatio/viikkoraportit/viikko6.md)
 
+## Releaset
+
+[Loppupalautus](https://github.com/sinisaarinen/tira-labra/releases/tag/loppupalautus)
+
 ## Komentorivitoiminnot
 
 ### Testaus
