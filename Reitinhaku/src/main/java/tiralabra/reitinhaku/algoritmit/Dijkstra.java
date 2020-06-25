@@ -18,7 +18,7 @@ public class Dijkstra {
     private char[][] kartta;
     private int lyhinReitti;
     private double[][] etaisyys;
-    private boolean[][] reitti;
+    private int[][] reitti;
     private boolean[][] kasitelty;
     private int kasiteltyja;
     
@@ -29,12 +29,11 @@ public class Dijkstra {
         this.kasiteltyja = 0;
         this.etaisyys = new double[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
-        this.reitti = new boolean[kartta.length][kartta[0].length];
+        this.reitti = new int[kartta.length][kartta[0].length];
         for (int i = 0; i < kartta.length; i++) {
             for (int j = 0; j < kartta[0].length; j++) {
                 etaisyys[i][j] = Integer.MAX_VALUE;
                 kasitelty[i][j] = false;
-                reitti[i][j] = false;
             }
         }
     }
@@ -78,9 +77,8 @@ public class Dijkstra {
      * @return reitin pituus
      */
     public void reitinPituus(Solmu solmu) {
-        this.reitti[solmu.getX()][solmu.getY()] = true;
+        this.reitti[solmu.getX()][solmu.getY()] = 1;
         if (solmu.getVanhempi() != null) {
-            this.reitti[solmu.getVanhempi().getX()][solmu.getVanhempi().getY()] = true;
             reitinPituus(solmu.getVanhempi());
         }
     }
@@ -139,7 +137,7 @@ public class Dijkstra {
         return this.minimiKeko;
     }
     
-    public boolean[][] getReitti() {
+    public int[][] getReitti() {
         return this.reitti;
     }
     
