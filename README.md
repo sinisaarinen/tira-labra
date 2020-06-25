@@ -10,6 +10,8 @@ Tämä sovellus toteutettiin osana Helsingin yliopiston alkukesän 2020 Tietorak
 
 [Testausdokumentti](dokumentaatio/testaus.md)
 
+[Käyttöohje](dokumentaatio/kayttoohje.md)
+
 ## Viikkoraportit
 
 [Viikko 1](dokumentaatio/viikkoraportit/viikko1.md)
