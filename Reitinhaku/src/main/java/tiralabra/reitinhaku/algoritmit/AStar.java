@@ -5,10 +5,8 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
-import static java.lang.Math.sqrt;
 import tiralabra.reitinhaku.tietorakenteet.Keko;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
  * Luokka vastaa A*-algoritmin toteutuksesta.
@@ -17,8 +15,6 @@ public class AStar {
 
     private Keko minimiKeko;
     private char[][] kartta;
-    private Solmu[] polku;
-    private int lyhinReitti;
     private int kasiteltyja;
     private boolean[][] kasitelty;
     private int[][] reitti;
@@ -27,8 +23,6 @@ public class AStar {
     public AStar(char[][] kartta) {
         this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
-        this.polku = new Solmu[kartta.length * kartta[0].length];
-        this.lyhinReitti = 0;
         this.kasiteltyja = 0;
         this.etaisyysAlusta = new double[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
@@ -58,8 +52,8 @@ public class AStar {
     /**
      * Metodi laskee lyhimmän reitin alku- ja loppusolmun välillä. Keon solmuja
      * käsitellään niin pitkään, kunnes joko reitin päätepiste tulee käsittelyyn
-     * ja algoritmi kutsuu metodia reitinPituus, joka laskee reitin pituuden ja 
-     * palauttaa sen, tai keossa ei ole enää solmuja, jolloin algoritmi palauttaa -1.
+     * ja algoritmi kutsuu metodia reitinPituus, joka merkitsee A-Starin kulkeman reitin sekä 
+     * palauttaa lyhimmän reitin, tai keossa ei ole enää solmuja, jolloin algoritmi palauttaa -1.
      *
      * @param alku solmu, josta reitti alkaa
      * @param loppu solmu, johon reitti päättyy
@@ -85,12 +79,10 @@ public class AStar {
         return -1;
     }
     /**
-     * Metodi laskee lyhimmän reitin loppusolmusta alkusolmuun kutsumalla solmun
+     * Metodi merkitsee lyhimmän reitin loppusolmusta alkusolmuun kutsumalla solmun
      * edeltäjää niin kauan, ettei edeltäjää enää ole eli ollaan päästy alkupisteeseen.
      *
-     * @param alku solmu, johon reitti päättyy
-     * 
-     * @return lyhimmän reitin pituus
+     * @param solmu solmu, johon reitti päättyy
      */
     public void reitinPituus(Solmu solmu) {
         this.reitti[solmu.getX()][solmu.getY()] = 2;
@@ -99,9 +91,8 @@ public class AStar {
         }
     }
     /**
-     * Metodi etsii käsiteltävän solmun ylä- ja alapuolilla sekä oikealla ja vasemmalla
-     * olevat solmut ja antaa niiden koordinaatit parametreiksi tutkiEtaisyyksia-metodille
-     * selvittääkseen, mihin käsiteltävästä solmusta voidaan seuraavaksi siirtyä.
+     * Metodi etsii käsiteltävän solmun ympärillä solmut ja antaa niiden koordinaatit parametreiksi 
+     * tutkiEtaisyyksia-metodille selvittääkseen, mihin käsiteltävästä solmusta voidaan seuraavaksi siirtyä.
      *
      * @param kasiteltava solmu, joka on nyt käsittelyssä
      * @param loppu solmu, johon reitti päättyy
@@ -134,6 +125,7 @@ public class AStar {
      * @param y solmun y-koordinaatti
      * @param edeltaja solmun edeltäjä
      * @param loppu solmu, johon reitti päättyy
+     * @param vinottain siirryttiinkö edellisestä solmusta vinottain vai ei
      */
     public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu, boolean vinottain) {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {

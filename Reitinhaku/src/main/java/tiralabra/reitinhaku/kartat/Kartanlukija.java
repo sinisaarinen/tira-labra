@@ -66,7 +66,7 @@ public class Kartanlukija {
                         [Integer.parseInt(leveys.substring(6))];
             lukija.nextLine();                      
             return matriisi;
-        } catch (Exception poikkeus) {
+        } catch (NumberFormatException poikkeus) {
             throw new Exception("Valittu tiedosto ei kelpaa.");            
         }        
     }

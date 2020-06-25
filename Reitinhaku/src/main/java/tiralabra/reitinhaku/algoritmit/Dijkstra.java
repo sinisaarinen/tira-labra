@@ -5,7 +5,6 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
-import static java.lang.Math.sqrt;
 import tiralabra.reitinhaku.tietorakenteet.Keko;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
 /**
@@ -16,7 +15,6 @@ public class Dijkstra {
     
     private Keko minimiKeko;
     private char[][] kartta;
-    private int lyhinReitti;
     private double[][] etaisyys;
     private int[][] reitti;
     private boolean[][] kasitelty;
@@ -25,7 +23,6 @@ public class Dijkstra {
     public Dijkstra(char[][] kartta) {
         this.kartta = kartta;
         this.minimiKeko = new Keko(kartta.length * kartta[0].length);
-        this.lyhinReitti = 0;
         this.kasiteltyja = 0;
         this.etaisyys = new double[kartta.length][kartta[0].length];
         this.kasitelty = new boolean[kartta.length][kartta[0].length];
@@ -41,11 +38,11 @@ public class Dijkstra {
      * Metodi saa parametreikseen reitin alku- ja loppusolmut ja laskee niiden
      * välisen lyhyimmän reitin. Alkusolmu lisätään kekoon, jonka jälkeen kekoa
      * käsitellään kunnes se on tyhjä. Jos käsiteltävä solmu on sama kuin loppu-
-     * solmu, kutsutaan metodia reitinPituus. Jos alkusolmusta ei ole mahdollista
-     * päästä loppusolmuun, metodi palauttaa -1.
+     * solmu, kutsutaan metodia reitinPituus ja palautetaan reitin pituus. 
+     * Jos alkusolmusta ei ole mahdollista päästä loppusolmuun, metodi palauttaa -1.
      * 
      * @param alku solmu, josta reitti alkaa
-     * @param solmu, johon reitti päättyy
+     * @param loppu solmu, johon reitti päättyy
      * @return reitin pituus
      */
     public double laskeReitinPituus(Solmu alku, Solmu loppu) {
@@ -67,12 +64,10 @@ public class Dijkstra {
         return -1;
     }
     /**
-     * Metodi saa parametrikseen solmun, johon reitti päättyy. Se laskee reitin
-     * pituuden etsimällä aina solmun vanhemman, kunnes vanhempia ei enää ole.
-     * Tällöin reitin pituus on saatu laskettua.
+     * Metodi saa parametrikseen solmun, johon reitti päättyy. Se kutsuu itseään rekursiivisesti, 
+     * kunnes päästiin alkusolmuun ja reitti on merkitty taulukkoon.
      * 
      * @param solmu solmu, johon reitti päättyy
-     * @return reitin pituus
      */
     public void reitinPituus(Solmu solmu) {
         this.reitti[solmu.getX()][solmu.getY()] = 1;
@@ -114,6 +109,7 @@ public class Dijkstra {
      * @param x solmun x-koordinaatti
      * @param edeltaja edeltäjäsolmu
      * @param loppu loppusolmu
+     * @param vinottain siirryttiinkö edeltävästä solmusta vinottain vai ei
      */
     public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu, boolean vinottain) {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {

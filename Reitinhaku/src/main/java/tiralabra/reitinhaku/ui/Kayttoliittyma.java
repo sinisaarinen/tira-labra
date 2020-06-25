@@ -23,7 +23,6 @@ import tiralabra.reitinhaku.algoritmit.AStar;
 import tiralabra.reitinhaku.algoritmit.Dijkstra;
 import tiralabra.reitinhaku.logiikka.Logiikka;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
-
 /**
  *
  * Luokka vastaa käyttöliittymästä ja sen toiminnallisuuksista.
@@ -175,8 +174,8 @@ public class Kayttoliittyma extends Application {
             window.setScene(menuNakyma);
         });
         /*
-        Laskee ja piirtää lyhimmän reitin molemmilla algoritmeilla sekä
-        näyttää käyttäjälle lasketun reitin pituuden ja laskemiseen kuluneen ajan.
+        Laskee ja piirtää lyhimmän reitin molemmilla algoritmeilla sekä ilmoittaa käyttäjälle
+        laskettujen reittien pituudet, käsiteltyjen solmujen määrät sekä laskemiseen kuluneet ajat.
          */
         laskeReittiNappi.setOnAction((event) -> {
             try {
@@ -221,9 +220,7 @@ public class Kayttoliittyma extends Application {
 
         window.setScene(menuNakyma);
         window.show();
-
     }
-
     /**
      * Metodi muuttaa kartan matriisimuotoisesta kartasta visuaalisesti
      * kauniimpaan muotoon.
@@ -242,7 +239,6 @@ public class Kayttoliittyma extends Application {
             }
         }
     }
-
     /**
      * Metodi piirtää valitun algoritmin löytämän lyhyimmän reitin karttaan.
      *
@@ -265,9 +261,10 @@ public class Kayttoliittyma extends Application {
             }
         }
     }
-
     /**
      * Metodi alustaa piirtoalustan.
+     * 
+     * @param piirtoalusta piirtoalusta, johon kartta piirretään
      */
     public void tyhjennaPiirtoalusta(Pane piirtoalusta) {
         piirtoalusta.getChildren().clear();
