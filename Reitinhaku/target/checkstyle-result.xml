@@ -7,7 +7,7 @@
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/algoritmit/AStar.java">
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/ui/Kayttoliittyma.java">
-<error line="33" column="5" severity="error" message="Method length is 142 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+<error line="35" column="5" severity="error" message="Method length is 156 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
 </file>
 <file name="/home/saasini/tira-labra/Reitinhaku/src/main/java/tiralabra/reitinhaku/tietorakenteet/Solmu.java">
 </file>

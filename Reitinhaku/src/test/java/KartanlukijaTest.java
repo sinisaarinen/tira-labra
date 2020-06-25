@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tiralabra.reitinhaku.kartat.Kartanlukija;
-
 /**
  *
  * @author saasini
@@ -84,6 +83,6 @@ public class KartanlukijaTest {
         } catch (Exception poikkeus) {
             assert false;
         }   
-    }    
+    }
 }
 

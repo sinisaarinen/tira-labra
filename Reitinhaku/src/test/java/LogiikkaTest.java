@@ -28,16 +28,13 @@ public class LogiikkaTest {
     
     @Test
     public void alustusToimiiOikein() {
-        assertEquals("Dijkstra", this.logiikka.getValittuAlgo());
         assertEquals("kartta1", this.logiikka.getValittuKartta());
     }
     
     @Test
-    public void valitunKartanTaiAlgonVoiVaihtaa() {
+    public void valitunKartanVoiVaihtaa() {
         this.logiikka.setValittuKartta("kartta2");
-        this.logiikka.setValittuAlgo("AStar");
         assertEquals("kartta2", this.logiikka.getValittuKartta());
-        assertEquals("AStar", this.logiikka.getValittuAlgo());
     }
     
     @Test
@@ -65,5 +62,11 @@ public class LogiikkaTest {
         Kartanlukija kartanlukija2 = new Kartanlukija(kartta2);
         char[][] matriisi2 = kartanlukija2.muutaMatriisiksi();
         Assert.assertArrayEquals(matriisi2, this.logiikka.getValittuKarttaMatriisina());
+    }
+    
+    @Test
+    public void vainValiditSolmutKelpaavat() {
+        assertFalse(logiikka.solmutOK("-1", "2", "3", "4"));
+        assertTrue(logiikka.solmutOK("20", "5", "250", "250"));
     }
 }

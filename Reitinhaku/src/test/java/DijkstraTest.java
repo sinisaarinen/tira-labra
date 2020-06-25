@@ -20,6 +20,7 @@ import tiralabra.reitinhaku.tietorakenteet.Solmu;
  */
 public class DijkstraTest {
     
+    private static final double DELTA = 1e-15;
     File tiedosto = new File("./kartat/London_2_256.map");
     Keko minimiKeko;
     Dijkstra dijkstra;
@@ -34,17 +35,18 @@ public class DijkstraTest {
     
     @Test
     public void lyhinReittiOnOikeanPituinen() {
+        assertEquals(0, dijkstra.getKasitellyt());
         Solmu eka = new Solmu(10, 0);
         Solmu toka = new Solmu(5, 0);
-        int pituus = dijkstra.laskeReitinPituus(eka, toka);
-        assertEquals(5, pituus);
+        double pituus = dijkstra.laskeReitinPituus(eka, toka);
+        assertEquals(5.00, pituus, DELTA);
     }
     
     @Test
     public void kartanUlkopuolistaSolmuaEiLisataKekoon() {
         Solmu edeltaja = new Solmu(0, 0);
         Solmu loppu = new Solmu(10, 10);
-        dijkstra.tutkiEtaisyyksia(-1, 0, edeltaja, loppu);
+        dijkstra.tutkiEtaisyyksia(-1, 0, edeltaja, loppu, false);
         assertEquals(-1, dijkstra.getKeko().getLisatytSolmut());
     }
 }

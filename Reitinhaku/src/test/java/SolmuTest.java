@@ -18,6 +18,7 @@ import tiralabra.reitinhaku.tietorakenteet.Solmu;
  */
 public class SolmuTest {
     
+    private static final double DELTA = 1e-15;
     private Solmu solmu1;
     private Solmu solmu2;
     private Solmu solmu3;
@@ -41,7 +42,7 @@ public class SolmuTest {
     public void getteritToimivatOikein() {
         assertEquals(5, solmu1.getX());
         assertEquals(5, solmu1.getY());
-        assertEquals(-1, solmu2.getLyhinEtaisyysAlusta());
+        assertEquals(-1, solmu2.getLyhinEtaisyysAlusta(), DELTA);
         assertEquals(null, solmu2.getVanhempi());
     }
 }

@@ -5,6 +5,7 @@
  */
 package tiralabra.reitinhaku.algoritmit;
 
+import static java.lang.Math.sqrt;
 import tiralabra.reitinhaku.tietorakenteet.Keko;
 import tiralabra.reitinhaku.tietorakenteet.Solmu;
 /**
@@ -16,25 +17,26 @@ public class Dijkstra {
     private Keko minimiKeko;
     private char[][] kartta;
     private int lyhinReitti;
-    private int[][] etaisyys;
-    private boolean[][] reitti;
+    private double[][] etaisyys;
+    private int[][] reitti;
     private boolean[][] kasitelty;
+    private int kasiteltyja;
     
-<span class="fc" id="L23">    public Dijkstra(char[][] kartta) {</span>
-<span class="fc" id="L24">        this.kartta = kartta;</span>
-<span class="fc" id="L25">        this.minimiKeko = new Keko(kartta.length * kartta[0].length);</span>
-<span class="fc" id="L26">        this.lyhinReitti = 0;</span>
-<span class="fc" id="L27">        this.etaisyys = new int[kartta.length][kartta[0].length];</span>
-<span class="fc" id="L28">        this.kasitelty = new boolean[kartta.length][kartta[0].length];</span>
-<span class="fc" id="L29">        this.reitti = new boolean[kartta.length][kartta[0].length];</span>
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (int i = 0; i &lt; kartta.length; i++) {</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">            for (int j = 0; j &lt; kartta[0].length; j++) {</span>
-<span class="fc" id="L32">                etaisyys[i][j] = Integer.MAX_VALUE;</span>
-<span class="fc" id="L33">                kasitelty[i][j] = false;</span>
-<span class="fc" id="L34">                reitti[i][j] = false;</span>
+<span class="fc" id="L25">    public Dijkstra(char[][] kartta) {</span>
+<span class="fc" id="L26">        this.kartta = kartta;</span>
+<span class="fc" id="L27">        this.minimiKeko = new Keko(kartta.length * kartta[0].length);</span>
+<span class="fc" id="L28">        this.lyhinReitti = 0;</span>
+<span class="fc" id="L29">        this.kasiteltyja = 0;</span>
+<span class="fc" id="L30">        this.etaisyys = new double[kartta.length][kartta[0].length];</span>
+<span class="fc" id="L31">        this.kasitelty = new boolean[kartta.length][kartta[0].length];</span>
+<span class="fc" id="L32">        this.reitti = new int[kartta.length][kartta[0].length];</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; kartta.length; i++) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (int j = 0; j &lt; kartta[0].length; j++) {</span>
+<span class="fc" id="L35">                etaisyys[i][j] = Integer.MAX_VALUE;</span>
+<span class="fc" id="L36">                kasitelty[i][j] = false;</span>
             }
         }
-<span class="fc" id="L37">    }</span>
+<span class="fc" id="L39">    }</span>
     /**
      * Metodi saa parametreikseen reitin alku- ja loppusolmut ja laskee niiden
      * välisen lyhyimmän reitin. Alkusolmu lisätään kekoon, jonka jälkeen kekoa
@@ -46,21 +48,23 @@ public class Dijkstra {
      * @param solmu, johon reitti päättyy
      * @return reitin pituus
      */
-    public int laskeReitinPituus(Solmu alku, Solmu loppu) {
-<span class="fc" id="L50">        this.minimiKeko.lisaaSolmu(alku);</span>
-<span class="fc" id="L51">        alku.setKekoon();</span>
+    public double laskeReitinPituus(Solmu alku, Solmu loppu) {
+<span class="fc" id="L52">        alku.setLyhinEtaisyysAlusta(0);</span>
+<span class="fc" id="L53">        etaisyys[alku.getX()][alku.getY()] = 0;</span>
+<span class="fc" id="L54">        this.minimiKeko.lisaaSolmu(alku);</span>
 
-<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        while (!minimiKeko.isEmpty()) {</span>
-<span class="fc" id="L54">            Solmu kasiteltava = minimiKeko.poistaPienin();</span>
-<span class="fc" id="L55">            kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;</span>
-<span class="fc" id="L56">            kasiteltava.setKasitelty();</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        while (!minimiKeko.isEmpty()) {</span>
+<span class="fc" id="L57">            Solmu kasiteltava = minimiKeko.poistaPienin();</span>
+<span class="fc" id="L58">            kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;</span>
+<span class="fc" id="L59">            kasiteltyja++;</span>
 
-<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (kasiteltava.equals(loppu)) {</span>
-<span class="fc" id="L59">                return reitinPituus(kasiteltava);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (kasiteltava.equals(loppu)) {</span>
+<span class="fc" id="L62">                reitinPituus(kasiteltava);</span>
+<span class="fc" id="L63">                return this.etaisyys[kasiteltava.getX()][kasiteltava.getY()];</span>
             }
-<span class="fc" id="L61">            etsi(kasiteltava, loppu);</span>
-<span class="fc" id="L62">        }</span>
-<span class="nc" id="L63">        return -1;</span>
+<span class="fc" id="L65">            etsi(kasiteltava, loppu);</span>
+<span class="fc" id="L66">        }</span>
+<span class="nc" id="L67">        return -1;</span>
     }
     /**
      * Metodi saa parametrikseen solmun, johon reitti päättyy. Se laskee reitin
@@ -70,15 +74,12 @@ public class Dijkstra {
      * @param solmu solmu, johon reitti päättyy
      * @return reitin pituus
      */
-    public int reitinPituus(Solmu solmu) {
-<span class="fc" id="L74">        this.reitti[solmu.getX()][solmu.getY()] = true;</span>
-<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (solmu.getVanhempi() != null) {</span>
-<span class="fc" id="L76">            this.reitti[solmu.getVanhempi().getX()][solmu.getVanhempi().getY()] = true;</span>
-<span class="fc" id="L77">            lyhinReitti++;</span>
-<span class="fc" id="L78">            reitinPituus(solmu.getVanhempi());</span>
+    public void reitinPituus(Solmu solmu) {
+<span class="fc" id="L78">        this.reitti[solmu.getX()][solmu.getY()] = 1;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (solmu.getVanhempi() != null) {</span>
+<span class="fc" id="L80">            reitinPituus(solmu.getVanhempi());</span>
         }
-<span class="fc" id="L80">        return lyhinReitti;</span>
-    }
+<span class="fc" id="L82">    }</span>
     /**
      * Metodi saa parametreikseen käsiteltävän solmun ja loppusolmun. Se kutsuu
      * metodia tutkiEtaisyyksia kaikkien solmun naapureiden osalta tarkistaakseen,
@@ -89,14 +90,22 @@ public class Dijkstra {
      */
     public void etsi(Solmu kasiteltava, Solmu loppu) {
         //askel ylös
-<span class="fc" id="L92">        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY(), kasiteltava, loppu);</span>
+<span class="fc" id="L93">        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY(), kasiteltava, loppu, false);</span>
         //askel alas
-<span class="fc" id="L94">        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY(), kasiteltava, loppu);</span>
+<span class="fc" id="L95">        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY(), kasiteltava, loppu, false);</span>
         //askel vasemmalle
-<span class="fc" id="L96">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() - 1, kasiteltava, loppu);</span>
+<span class="fc" id="L97">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() - 1, kasiteltava, loppu, false);</span>
         //askel oikealle
-<span class="fc" id="L98">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() + 1, kasiteltava, loppu);  </span>
-<span class="fc" id="L99">    }</span>
+<span class="fc" id="L99">        tutkiEtaisyyksia(kasiteltava.getX(), kasiteltava.getY() + 1, kasiteltava, loppu, false);</span>
+        //askel koilliseen
+<span class="fc" id="L101">        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY() + 1, kasiteltava, loppu, true);</span>
+        //askel kaakkoon
+<span class="fc" id="L103">        tutkiEtaisyyksia(kasiteltava.getX() + 1, kasiteltava.getY() - 1, kasiteltava, loppu, true);</span>
+        //askel lounaaseen
+<span class="fc" id="L105">        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY() - 1, kasiteltava, loppu, true);</span>
+        //askel luoteeseen
+<span class="fc" id="L107">        tutkiEtaisyyksia(kasiteltava.getX() - 1, kasiteltava.getY() + 1, kasiteltava, loppu, true);</span>
+<span class="fc" id="L108">    }</span>
     /**
      * Metodi tarkistaa ensin, onko annettu solmu kartalla ja onko siihen mahdollista
      * edetä. Tämän jälkeen solmulle lasketaan etäisyys alusta ja se lisätään kekoon.
@@ -106,24 +115,31 @@ public class Dijkstra {
      * @param edeltaja edeltäjäsolmu
      * @param loppu loppusolmu
      */
-    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu) {
-<span class="pc bpc" id="L110" title="3 of 12 branches missed.">        if ((x &gt;= 0 &amp;&amp; x &lt; kartta.length) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt; kartta[0].length) &amp;&amp; kartta[x][y] == '.' &amp;&amp; kasitelty[x][y] == false) {</span>
-<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (edeltaja.getLyhinEtaisyysAlusta() + 1 &lt; etaisyys[x][y]) {</span>
-<span class="fc" id="L112">                int etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta() + 1;</span>
-<span class="fc" id="L113">                etaisyys[x][y] = etaisyysAlusta;</span>
-<span class="fc" id="L114">                Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                </span>
-<span class="fc" id="L115">                minimiKeko.lisaaSolmu(solmu);</span>
-<span class="fc" id="L116">                solmu.setKekoon();</span>
+    public void tutkiEtaisyyksia(int x, int y, Solmu edeltaja, Solmu loppu, boolean vinottain) {
+<span class="pc bpc" id="L119" title="3 of 12 branches missed.">        if ((x &gt;= 0 &amp;&amp; x &lt; kartta.length) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt; kartta[0].length) &amp;&amp; kartta[x][y] == '.' &amp;&amp; kasitelty[x][y] == false) {</span>
+<span class="fc" id="L120">            double siirtyma = 1.00;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">            if (vinottain == true) {</span>
+<span class="fc" id="L122">                siirtyma = Math.sqrt(2);</span>
+            }
+<span class="fc bfc" id="L124" title="All 2 branches covered.">            if (edeltaja.getLyhinEtaisyysAlusta() + siirtyma &lt; etaisyys[x][y]) {</span>
+<span class="fc" id="L125">                double etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta() + siirtyma;</span>
+<span class="fc" id="L126">                etaisyys[x][y] = etaisyysAlusta;</span>
+<span class="fc" id="L127">                Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                </span>
+<span class="fc" id="L128">                minimiKeko.lisaaSolmu(solmu);</span>
             }
         }
-<span class="fc" id="L119">    }</span>
+<span class="fc" id="L131">    }</span>
     
     public Keko getKeko() {
-<span class="fc" id="L122">        return this.minimiKeko;</span>
+<span class="fc" id="L134">        return this.minimiKeko;</span>
     }
     
-    public boolean[][] getReitti() {
-<span class="nc" id="L126">        return this.reitti;</span>
+    public int[][] getReitti() {
+<span class="nc" id="L138">        return this.reitti;</span>
+    }
+    
+    public int getKasitellyt() {
+<span class="fc" id="L142">        return this.kasiteltyja;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

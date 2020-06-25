@@ -20,6 +20,7 @@ import tiralabra.reitinhaku.tietorakenteet.Solmu;
  */
 public class AStarTest {
     
+    private static final double DELTA = 1e-15;
     File tiedosto = new File("./kartat/London_2_256.map");
     Keko minimiKeko;
     AStar astar;
@@ -35,25 +36,26 @@ public class AStarTest {
     @Test
     public void alustusAsettaaAlkusolmunEtaisyydeksiNollan() {
         Solmu alku = new Solmu(10, 2);
-        assertEquals(-1, alku.getLyhinEtaisyysAlusta());
+        assertEquals(-1.00, alku.getLyhinEtaisyysAlusta(), DELTA);
         Solmu loppu = new Solmu(5, 2);
         astar.laskeReitti(alku, loppu);
-        assertEquals(0, alku.getLyhinEtaisyysAlusta());
+        assertEquals(0, alku.getLyhinEtaisyysAlusta(), DELTA);
     }
     
     @Test
     public void lyhinReittiOnOikeanPituinen() {
+        assertEquals(0, astar.getKasitellyt());
         Solmu eka = new Solmu(10, 0);
         Solmu toka = new Solmu(14, 0);
-        int pituus = astar.laskeReitti(eka, toka);
-        assertEquals(4, pituus);
+        double pituus = astar.laskeReitti(eka, toka);
+        assertEquals(4.00, pituus, DELTA);
     }
     
     @Test
     public void kartanUlkopuolistaSolmuaEiLisataKekoon() {
         Solmu edeltaja = new Solmu(0, 0);
         Solmu loppu = new Solmu(20, 10);
-        astar.tutkiEtaisyyksia(-1, 0, edeltaja, loppu);
+        astar.tutkiEtaisyyksia(-1, 0, edeltaja, loppu, false);
         assertEquals(-1, astar.getKeko().getLisatytSolmut());
     }
 }

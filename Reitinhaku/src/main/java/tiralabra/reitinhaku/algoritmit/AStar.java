@@ -70,12 +70,10 @@ public class AStar {
         alku.setLyhinEtaisyysAlusta(0);
         etaisyysAlusta[alku.getX()][alku.getY()] = 0;
         minimiKeko.lisaaSolmu(alku);
-        alku.setKekoon();
 
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
             kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
-            kasiteltava.setKasitelty();
             kasiteltyja++;
 
             if (kasiteltava.equals(loppu)) {
@@ -141,7 +139,7 @@ public class AStar {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {
             double siirtyma = 1.00;
             if (vinottain == true) {
-               siirtyma = Math.sqrt(2);
+                siirtyma = Math.sqrt(2);
             }
             if (edeltaja.getLyhinEtaisyysAlusta() + siirtyma < etaisyysAlusta[x][y]) {
                 double etaisyysAlustaDouble = edeltaja.getLyhinEtaisyysAlusta() + siirtyma;
@@ -150,7 +148,6 @@ public class AStar {
                 Solmu solmu = new Solmu(x, y, etaisyysAlustaDouble, edeltaja);
                 solmu.setEtaisyysArvioLoppuun(etaisyysLopusta);
                 minimiKeko.lisaaSolmu(solmu);
-                solmu.setKekoon();
             }
         }
     }
@@ -165,9 +162,5 @@ public class AStar {
     
     public int getKasitellyt() {
         return this.kasiteltyja;
-    }
-    
-    public boolean[][] getKasitellytTaulukkona() {
-        return this.kasitelty;
     }
 }

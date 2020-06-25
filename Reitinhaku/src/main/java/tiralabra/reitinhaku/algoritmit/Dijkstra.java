@@ -52,13 +52,11 @@ public class Dijkstra {
         alku.setLyhinEtaisyysAlusta(0);
         etaisyys[alku.getX()][alku.getY()] = 0;
         this.minimiKeko.lisaaSolmu(alku);
-        alku.setKekoon();
 
         while (!minimiKeko.isEmpty()) {
             Solmu kasiteltava = minimiKeko.poistaPienin();
             kasitelty[kasiteltava.getX()][kasiteltava.getY()] = true;
             kasiteltyja++;
-            kasiteltava.setKasitelty();
 
             if (kasiteltava.equals(loppu)) {
                 reitinPituus(kasiteltava);
@@ -121,14 +119,13 @@ public class Dijkstra {
         if ((x >= 0 && x < kartta.length) && (y >= 0 && y < kartta[0].length) && kartta[x][y] == '.' && kasitelty[x][y] == false) {
             double siirtyma = 1.00;
             if (vinottain == true) {
-               siirtyma = Math.sqrt(2);
+                siirtyma = Math.sqrt(2);
             }
             if (edeltaja.getLyhinEtaisyysAlusta() + siirtyma < etaisyys[x][y]) {
                 double etaisyysAlusta = edeltaja.getLyhinEtaisyysAlusta() + siirtyma;
                 etaisyys[x][y] = etaisyysAlusta;
                 Solmu solmu = new Solmu(x, y, etaisyysAlusta, edeltaja);                
                 minimiKeko.lisaaSolmu(solmu);
-                solmu.setKekoon();
             }
         }
     }
@@ -143,9 +140,5 @@ public class Dijkstra {
     
     public int getKasitellyt() {
         return this.kasiteltyja;
-    }
-    
-    public boolean[][] getKasitellytTaulukkona() {
-        return this.kasitelty;
     }
 }
