@@ -43,6 +43,18 @@ mvn test jacoco:report
 ```
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_
 
+### Jar-tiedoston generointi
+
+Jar-tiedosto generoidaan komennolla
+```
+mvn package
+```
+Suoritettava tiedosto _Reitinhaku-1.0-SNAPSHOT.jar_ löytyy tämän jälkeen hakemistosta _target_, ja sen voi suorittaa komennolla
+```
+java -jar Reitinhaku-1.0-SNAPSHOT.jar
+```
+Sovellus odottaa, että suoritushakemistossa on kansio _Kartat_, joka sisältää tiedostot _London_2_256.map_, _Milan_2_256.map_, _Moscow_1_256.map_ ja _NewYork_1_256.map_. 
+
 ### JavaDoc
 
 JavaDoc luodaan komennolla
