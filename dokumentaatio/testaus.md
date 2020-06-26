@@ -22,10 +22,14 @@ Tänne tullaan päivittämään kuva lopullisesta testikattavuudesta, kun sovell
 
 ## Suorituskykytestaus
 
-Algoritmien suorituskykyä on mitattu vaihtamalla manuaalisesti reitin lähtö- ja maalipisteitä ja mittaamalla A*- ja Dijkstran algoritmeilla kuluvaa aikaa lyhimmän reitin löytämiseen. Suorituskykytestaukseen on käytetty Javan omaa System.currentTimeMillis()-metodia. 
+Algoritmien suorituskykyä on testattu mittaamalla A*- ja Dijkstran algoritmeilla kuluvaa aikaa lyhimmän reitin löytämiseen eri kartoissa. Suorituskykytestaukseen on käytetty Javan omaa System.currentTimeMillis()-metodia. 
 
 Testausta on tehty antamalla algoritmeille syötteinä samat matriisimuodossa olevat kartat sekä samat alku- ja loppusolmut. Algoritmien toimivuus on varmistettu toteuttamalla graafinen esitys lyhyimmistä reiteistä käyttöliittymään sekä tarkistamalla, että löydetyt lyhimmät reitit ovat kaikilla syötteillä samanmittaiset A*- ja Dijkstran algoritmeilla.
 
-A*-algoritmi toimii tällä hetkellä huomattavasti nopeammin kuin Dijkstra. Esimerkiksi reitin pituuden ollessa 395, kuluu Dijkstralla reitin löytämiseen noin 28 ms ja A*-algoritmilla 11 ms. Tarkempia lukuja ja grafiikkaa testauksen tuloksista päivitetään tänne pian.
+Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Ajat on laskettu kymmenen perättäisen haun keskiarvona. Iteraatiot tarkoittaa läpikäytyjen solmujen määrää.
+
+| Algoritmi  | Kartta  | Iteraatiot  | Lyhin reitti | Aika (ms) |
+|---------------|-------------|------|---------|-----------|
+| Dijkstra | - | - | - | - |
 
 Testit voidaan toistaa antamalla algoritmeille syötteiksi samat kartat ja samat alku- ja loppusolmut.
