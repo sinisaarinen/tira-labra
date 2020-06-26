@@ -29,7 +29,7 @@ Testausta on tehty antamalla algoritmeille syötteinä samat matriisimuodossa ol
 Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Kartan koko on ilmoitettu nimen jälkeen suluissa. Alku- ja loppusolmut on ilmoitettu muodossa (x,y). Ajat on laskettu kymmenen perättäisen haun keskiarvona. Iteraatiot tarkoittaa läpikäytyjen solmujen määrää. Kaikki testauksessa käytetyt kartat löytyvät [täältä](https://movingai.com/benchmarks/street/index.html).
 
 | Algoritmi  | Kartta  | Alkusolmu | Loppusolmu | Iteraatiot  | Lyhin reitti | Aika (ms) |
-|---------------|-------------|------|---------|-----------|-----------|---------|
+|:---------------|:-------------|:------|:---------|-----------:|-----------:|---------:|
 | Dijkstra | Moscow_1_256.map (256x256) | (0,0) | (240,240) | 48585 | 348,78 | 24,3 |
 | A* | Moscow_1_256.map (256x256) | (0,0) | (240,240) | 7903 | 348,78 | 4,2 |
 | Dijkstra | Milan_2_256.map | (0,0) | (240,240) | 48147 | 394,70 | 19 |
@@ -38,6 +38,8 @@ Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Kartan koko on 
 | A* | Sydney_0_512.map (512x512) | (0,0) | (500,500) | 127498 | 748,70 | 90,5 |
 | Dijkstra | NewYork_1_512.map (512x512) | (0,0) | (500,500) | 197699 | 758,45 | 123,3 |
 | A* | NewYork_1_512.map (512x512) | (0,0) | (500,500) | 147950 | 758,45 | 102,9 |
+| Dijkstra | Shanghai_0_1024.map (1024x1024) | (0,0) | (1020,1020) | 805704 | 1528,02 | 347,5 |
+| A* | Shanghai_0_1024.map (1024x1024) | (0,0) | (1020,1020) | 461456 | 1528,02 | 244,8 |
 
 Tuloksien tulkintaa..
 
