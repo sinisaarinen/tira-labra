@@ -43,6 +43,6 @@ Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Kartan koko on 
 | Dijkstra | Paris_2_1024.map (1024x1024) | (0,0) | (950,1000) | 730230 | 1609,24 | 336,7 |
 | A* | Paris_2_1024.map (1024x1024) | (0,0) | (950,1000) | 327918 | 1609,24 | 254,2 |
 
-Suorituskykytestauksen tuloksia analysoidaan tarkemmin [toteutusdokumentissa](dokumentaatio/toteutus.md).
+Suorituskykytestauksen tuloksia analysoidaan tarkemmin [toteutusdokumentissa](toteutus.md).
 
 Testit voidaan toistaa antamalla algoritmeille syötteiksi samat kartat ja samat alku- ja loppusolmut.
