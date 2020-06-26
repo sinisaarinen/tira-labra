@@ -26,11 +26,11 @@ Algoritmien suorituskykyä on testattu mittaamalla A*- ja Dijkstran algoritmeill
 
 Testausta on tehty antamalla algoritmeille syötteinä samat matriisimuodossa olevat kartat sekä samat alku- ja loppusolmut. Algoritmien toimivuus on varmistettu toteuttamalla graafinen esitys lyhyimmistä reiteistä käyttöliittymään sekä tarkistamalla, että löydetyt lyhimmät reitit ovat kaikilla syötteillä samanmittaiset A*- ja Dijkstran algoritmeilla.
 
-Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Alku- ja loppusolmut on ilmoitettu muodossa (x,y). Ajat on laskettu kymmenen perättäisen haun keskiarvona. Iteraatiot tarkoittaa läpikäytyjen solmujen määrää. Kaikki testauksessa käytetyt kartat löytyvät täältä (LISÄÄ LINKKI).
+Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Alku- ja loppusolmut on ilmoitettu muodossa (x,y). Ajat on laskettu kymmenen perättäisen haun keskiarvona. Iteraatiot tarkoittaa läpikäytyjen solmujen määrää. Kaikki testauksessa käytetyt kartat löytyvät [täältä](https://movingai.com/benchmarks/street/index.html).
 
 | Algoritmi  | Kartta  | Alkusolmu | Loppusolmu | Iteraatiot  | Lyhin reitti | Aika (ms) |
 |---------------|-------------|------|---------|-----------|-----------|---------|
-| Dijkstra | - | (0,0) | (240,240) | 48585 | 348,78 | 24,3 |
-| A* | (0,0) | (240,240) | 7903 | 348,78 | 4,2 |
+| Dijkstra | Moscow_1_256.map | (0,0) | (240,240) | 48585 | 348,78 | 24,3 |
+| A* | Moscow_1_256.map | (0,0) | (240,240) | 7903 | 348,78 | 4,2 |
 
 Testit voidaan toistaa antamalla algoritmeille syötteiksi samat kartat ja samat alku- ja loppusolmut.
