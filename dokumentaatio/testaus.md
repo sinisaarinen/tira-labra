@@ -40,6 +40,8 @@ Alle on listattu suorituskykytestauksen yhteenveto taulukoituna. Kartan koko on 
 | A* | NewYork_1_512.map (512x512) | (0,0) | (500,500) | 147950 | 758,45 | 102,9 |
 | Dijkstra | Shanghai_0_1024.map (1024x1024) | (0,0) | (1020,1020) | 805704 | 1528,02 | 347,5 |
 | A* | Shanghai_0_1024.map (1024x1024) | (0,0) | (1020,1020) | 461456 | 1528,02 | 244,8 |
+| Dijkstra | Paris_2_1024.map (1024x1024) | (0,0) | (950,1000) | 730230 | 1609,24 | 336,7 |
+| A* | Paris_2_1024.map (1024x1024) | (0,0) | (950,1000) | 327918 | 1609,24 | 254,2 |
 
 Tuloksien tulkintaa..
 
