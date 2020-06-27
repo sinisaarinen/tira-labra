@@ -212,6 +212,8 @@ public class Kayttoliittyma extends Application {
             tyhjennaPiirtoalusta(piirtoalusta);
             kulunutAika.setText("");
             reitinPituus.setText("");
+            kulunutAika2.setText("");
+            reitinPituus2.setText("");
             try {
                 piirraKartta(this.logiikka.getValittuKarttaMatriisina(), piirtoalusta);
             } catch (Exception ex) {
