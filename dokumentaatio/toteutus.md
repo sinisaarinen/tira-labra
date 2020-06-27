@@ -14,12 +14,12 @@ Ohjelma käynnistetään Main-metodista, joka avaa näytölle käyttöliittymän
 
 Vertailu-napin painaminen tyhjentää piirtoalustan mahdollisista aiemmin piirretyistä kartoista ja reiteistä sekä nollaa kuluneen ajan ja lasketun reitin pituuden, jotka näytetään käyttäjälle. Tämän jälkeen kutsutaan piirraKartta-metodia, joka saa parametrikseen Logiikka-luokan tiedossa olevan valitun kartan sekä tyhjän piirtoalustan, johon kartta piirretään. Logiikka-luokan kutsuttava metodi getValittuKarttaMatriisina antaa Kartanlukija-luokalle parametrina oikean kartan, joka muutetaan Kartanlukija-luokassa matriisiksi. Jos karttaa ei löydy tai sen luku ei onnistu, ilmoittaa sovellus tästä käyttäjälle.
 
-Dijkstran ja A*-algoritmi saavat parametrikseen matriisiksi muutetun kartan sekä alku- ja loppusolmut, joiden välille ne etsivät lyhyimmän reitin. Alku- ja loppusolmujen x- ja y-koordinaatit pitää toistaiseksi vaihtaa itse manuaalisesti Main-luokassa, jos algoritmien halutaan testata eri alku- ja loppusolmuille, eikä sovellus toimi oikein, jos alku- tai loppusolmuksi valitaan sellainen piste kartasta, johon ei voi kulkea (jos kokeilet itse muuttaa koordinaatteja eikä ohjelma toimi, syy on tämä). Tähän yritetään keksiä parempi ratkaisu ennen viimeistä palautusta.
+Dijkstran ja A*-algoritmi saavat parametrikseen matriisiksi muutetun kartan sekä alku- ja loppusolmut, joiden välille ne etsivät lyhyimmän reitin. Kun käyttäjä painaa Hae reitti -nappia, piirtää ohjelma kartalle lyhimmät reitit molemmilla algoritmeilla sekä ilmoittaa käyttäjälle reitin pituuden, käsiteltyjen solmujen määrän ja reitin hakemiseen kuluneen ajan. Reitit saa nollattua painamalla Pyyhi reitit -nappia.
 
-Vertailunäkymässä on tällä hetkellä napit A*-, Dijkstran ja JPS-algoritmeille, joista viimeistä ei ole vielä toteutettu. Napin klikkaus kutsuu Logiikka-luokan metodia setValittuAlgo. Kun käyttäjä painaa Hae reitti -nappia, piirtää ohjelma kartalle lyhimmän reitin valitulla algoritmilla sekä ilmoittaa käyttäjälle reitin pituuden ja reitin hakemiseen kuluneen ajan. Reitit saa nollattua painamalla Pyyhi reitit -nappia.
+## Saavutetut aika- ja tilavaativuudet
 
-## Tämänhetkiset puutteet
+## Suorituskykyvertailu
 
-Tänne tullaan lähiaikoina lisäämään myös analyysi saavutetuista aika- ja tilavaativuuksista. Koska työn ideana on vertailla Dijkstran ja A*-algoritmin suorituskykyä reitinhaussa, lisätään tänne myös suorituskyky- ja O-analyysivertailu.
+## Puutteet ja parannusehdotukset
 
-Lopulliseen toteutusdokumenttiin lisätään myös työn puutteet ja parannusehdotukset sekä tämän dokumentin mahdolliset lähteet.
+Työhön ei ehditty toteuttaa JPS-algoritmia.
