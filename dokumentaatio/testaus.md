@@ -18,7 +18,7 @@ mvn test jacoco:report
 ```
 Kattavuusraporttia voi tämän jälkeen tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
-Tänne tullaan päivittämään kuva lopullisesta testikattavuudesta, kun sovellus on valmis.
+![](dokumentaatio/testikattavuus.png)
 
 ## Suorituskykytestaus
 
