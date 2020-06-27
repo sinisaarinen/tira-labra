@@ -17,9 +17,20 @@ Vertailu-napin painaminen tyhjentää piirtoalustan mahdollisista aiemmin piirre
 Dijkstran ja A*-algoritmi saavat parametrikseen matriisiksi muutetun kartan sekä alku- ja loppusolmut, joiden välille ne etsivät lyhyimmän reitin. Kun käyttäjä painaa Hae reitti -nappia, piirtää ohjelma kartalle lyhimmät reitit molemmilla algoritmeilla sekä ilmoittaa käyttäjälle reitin pituuden, käsiteltyjen solmujen määrän ja reitin hakemiseen kuluneen ajan. Reitit saa nollattua painamalla Pyyhi reitit -nappia.
 
 ## Saavutetut aika- ja tilavaativuudet
+Dijkstran ja A*-algoritmin kokonaisaikavaativuus on O((|E|+|V|) log(|V|)), jossa V on solmujen lukumäärä ja E kaarien lukumäärä. Tilavaativuus Dijkstran algoritmilla ja A*-algoritmilla on O(|V|).
 
 ## Suorituskykyvertailu
 
+Vaikka Dijkstran ja A*-algoritmilla onkin teoriassa sama aikavaativuus, käy [suorituskykytestien](testaus.md) tuloksista ilmi, että A*-algoritmi toimii huomattavasti Dijkstraa nopeammin ja käy läpi vähemmän solmuja. Ainoastaan yhdessä testissä (tulostaulukon kolmas ja neljäs rivi) A*-algoritmilla meni keskimäärin enemmän aikaa lyhyimmän reitin löytämiseen. Tässä testissä valittiin tarkoituksella A*-algoritmille epäedullinen tilanne, jossa lyhin reitti kiersi useamman esteen ympäri.
+
 ## Puutteet ja parannusehdotukset
 
-Työhön ei ehditty toteuttaa JPS-algoritmia.
+Työhön ei ehditty toteuttaa JPS-algoritmia. JPS-algoritmi olisi mahdollistanut monipuolisemman suorituskykytestaamisen. Käyttöliittymän kehitys jäi myös kesken: alku- ja loppusolmut olisi kätevämpi pystyä valitsemaan suoraan karttaa klikkaamalla, jolloin ei pitäisi arvioida, osuvatko syötetyt koordinaatit esteen päälle.
+
+Lähteet:
+
+Wikipedia (2020a) Dijkstran algoritmi. https://fi.wikipedia.org/wiki/Dijkstran_algoritmi, haettu 15.5.2020.
+
+Wikipedia (2020b) A*-algoritmi. https://fi.wikipedia.org/wiki/A*-algoritmi, haettu 15.5.2020.
+
+Wikipedia (2020c) A* search algorithm. https://en.wikipedia.org/wiki/A*_search_algorithm, haettu 15.5.2020.
